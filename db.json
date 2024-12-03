@@ -1,0 +1,1525 @@
+{
+  "categories": [
+    {
+      "category_id": 1,
+      "category_name": "family",
+      "category_desc": "Cover beyond beyond expect knowledge change power.",
+      "category_img": "https://placeimg.com/640/480/family",
+      "id": "3d1b"
+    },
+    {
+      "category_id": 2,
+      "category_name": "commercial",
+      "category_desc": "Alone off store significant.",
+      "category_img": "https://placeimg.com/640/480/business",
+      "id": "a664"
+    },
+    {
+      "category_id": 3,
+      "category_name": "maintain",
+      "category_desc": "Help save where anything all.",
+      "category_img": "https://placeimg.com/640/480/tech",
+      "id": "7d8b"
+    },
+    {
+      "category_id": 4,
+      "category_name": "carry",
+      "category_desc": "Stage other enter address.",
+      "category_img": "https://placeimg.com/640/480/transport",
+      "id": "7fd4"
+    },
+    {
+      "category_id": 5,
+      "category_name": "somebody",
+      "category_desc": "Wear yeah always edge region.",
+      "category_img": "https://placeimg.com/640/480/people",
+      "id": "f467"
+    },
+    {
+      "category_id": 6,
+      "category_name": "citizen",
+      "category_desc": "Several surface scientist per available result happen.",
+      "category_img": "https://placeimg.com/640/480/city",
+      "id": "702f"
+    },
+    {
+      "category_id": 7,
+      "category_name": "thousand",
+      "category_desc": "Attention such politics begin power outside.",
+      "category_img": "https://placeimg.com/640/480/abstract",
+      "id": "cb81"
+    },
+    {
+      "category_id": 8,
+      "category_name": "step",
+      "category_desc": "Everyone assume fall spring way line draw.",
+      "category_img": "https://placeimg.com/640/480/nature",
+      "id": "2b84"
+    },
+    {
+      "category_id": 9,
+      "category_name": "democratic",
+      "category_desc": "Research win commercial up color ever.",
+      "category_img": "https://placeimg.com/640/480/politics",
+      "id": "3256"
+    },
+    {
+      "category_id": 10,
+      "category_name": "nice",
+      "category_desc": "Everything person recently know agent our.",
+      "category_img": "http://localhost:3001/uploads/1733197096551-605416548.png",
+      "id": "a6be"
+    }
+  ],
+  "products": [
+    {
+      "product_id": "1",
+      "product_name": "subject",
+      "product_price": 322.76,
+      "product_img": "http://localhost:3001/uploads/1733206514003-201632995.png",
+      "product_discount": 1,
+      "product_cat": 3,
+      "product_status": "pre_order",
+      "id": "d5cf"
+    },
+    {
+      "product_id": "2",
+      "product_name": "pressure",
+      "product_price": 553.36,
+      "product_img": "https://www.lorempixel.com/720/707",
+      "product_discount": 11,
+      "product_cat": 2,
+      "product_status": "pre_order",
+      "id": "9712"
+    },
+    {
+      "product_id": "3",
+      "product_name": "time",
+      "product_price": 232.53,
+      "product_img": "https://placekitten.com/987/554",
+      "product_discount": 21,
+      "product_cat": 6,
+      "product_status": "out_of_stock",
+      "id": "67d0"
+    },
+    {
+      "product_id": "4",
+      "product_name": "computer",
+      "product_price": 289.88,
+      "product_img": "https://placekitten.com/27/964",
+      "product_discount": 28,
+      "product_cat": 9,
+      "product_status": "out_of_stock",
+      "id": "89d5"
+    },
+    {
+      "product_id": 5,
+      "product_name": "too",
+      "product_price": 142.96,
+      "product_img": "https://www.lorempixel.com/103/434",
+      "product_discount": 0,
+      "product_cat": 5,
+      "product_status": "pre_order",
+      "id": "b17d"
+    },
+    {
+      "product_id": 6,
+      "product_name": "message",
+      "product_price": 972.75,
+      "product_img": "https://placekitten.com/231/886",
+      "product_discount": 28,
+      "product_cat": 3,
+      "product_status": "pre_order",
+      "id": "8231"
+    },
+    {
+      "product_id": 7,
+      "product_name": "item",
+      "product_price": 452.98,
+      "product_img": "https://placeimg.com/38/252/any",
+      "product_discount": 8,
+      "product_cat": 2,
+      "product_status": "out_of_stock",
+      "id": "97ba"
+    },
+    {
+      "product_id": 8,
+      "product_name": "receive",
+      "product_price": 350.35,
+      "product_img": "https://www.lorempixel.com/320/390",
+      "product_discount": 18,
+      "product_cat": 8,
+      "product_status": "pre_order",
+      "id": "a892"
+    },
+    {
+      "product_id": 9,
+      "product_name": "between",
+      "product_price": 431.01,
+      "product_img": "https://placeimg.com/159/174/any",
+      "product_discount": 21,
+      "product_cat": 1,
+      "product_status": "pre_order",
+      "id": "add3"
+    },
+    {
+      "product_id": 10,
+      "product_name": "herself",
+      "product_price": 716.44,
+      "product_img": "https://dummyimage.com/581x331",
+      "product_discount": 19,
+      "product_cat": 8,
+      "product_status": "pre_order",
+      "id": "a0b6"
+    },
+    {
+      "product_id": 11,
+      "product_name": "cell",
+      "product_price": 469.59,
+      "product_img": "https://placeimg.com/930/139/any",
+      "product_discount": 9,
+      "product_cat": 5,
+      "product_status": "pre_order",
+      "id": "a170"
+    },
+    {
+      "product_id": 12,
+      "product_name": "while",
+      "product_price": 821.77,
+      "product_img": "https://www.lorempixel.com/48/433",
+      "product_discount": 9,
+      "product_cat": 1,
+      "product_status": "pre_order",
+      "id": "4065"
+    },
+    {
+      "product_id": 13,
+      "product_name": "large",
+      "product_price": 247.57,
+      "product_img": "https://placeimg.com/192/878/any",
+      "product_discount": 23,
+      "product_cat": 1,
+      "product_status": "available",
+      "id": "256a"
+    },
+    {
+      "product_id": 14,
+      "product_name": "pull",
+      "product_price": 81.86,
+      "product_img": "https://placekitten.com/727/1018",
+      "product_discount": 13,
+      "product_cat": 2,
+      "product_status": "pre_order",
+      "id": "9e29"
+    },
+    {
+      "product_id": 15,
+      "product_name": "theory",
+      "product_price": 856.93,
+      "product_img": "https://placeimg.com/802/117/any",
+      "product_discount": 7,
+      "product_cat": 2,
+      "product_status": "available",
+      "id": "cf7f"
+    },
+    {
+      "product_id": 16,
+      "product_name": "among",
+      "product_price": 289.49,
+      "product_img": "https://dummyimage.com/908x309",
+      "product_discount": 1,
+      "product_cat": 5,
+      "product_status": "available",
+      "id": "e473"
+    },
+    {
+      "product_id": 17,
+      "product_name": "partner",
+      "product_price": 762.46,
+      "product_img": "https://placeimg.com/604/168/any",
+      "product_discount": 28,
+      "product_cat": 6,
+      "product_status": "out_of_stock",
+      "id": "22df"
+    },
+    {
+      "product_id": 18,
+      "product_name": "around",
+      "product_price": 33.98,
+      "product_img": "https://placeimg.com/859/353/any",
+      "product_discount": 24,
+      "product_cat": 9,
+      "product_status": "pre_order",
+      "id": "7ede"
+    },
+    {
+      "product_id": 19,
+      "product_name": "situation",
+      "product_price": 894.53,
+      "product_img": "https://placeimg.com/692/418/any",
+      "product_discount": 23,
+      "product_cat": 5,
+      "product_status": "pre_order",
+      "id": "c10e"
+    },
+    {
+      "product_id": 20,
+      "product_name": "line",
+      "product_price": 793.69,
+      "product_img": "https://www.lorempixel.com/664/797",
+      "product_discount": 1,
+      "product_cat": 2,
+      "product_status": "out_of_stock",
+      "id": "865f"
+    },
+    {
+      "product_id": 21,
+      "product_name": "will",
+      "product_price": 749.87,
+      "product_img": "https://placekitten.com/390/563",
+      "product_discount": 26,
+      "product_cat": 9,
+      "product_status": "available",
+      "id": "c0ef"
+    },
+    {
+      "product_id": 22,
+      "product_name": "live",
+      "product_price": 899,
+      "product_img": "https://placekitten.com/522/342",
+      "product_discount": 23,
+      "product_cat": 2,
+      "product_status": "available",
+      "id": "3445"
+    },
+    {
+      "product_id": 23,
+      "product_name": "project",
+      "product_price": 231.28,
+      "product_img": "https://placekitten.com/325/733",
+      "product_discount": 27,
+      "product_cat": 2,
+      "product_status": "out_of_stock",
+      "id": "acad"
+    },
+    {
+      "product_id": 24,
+      "product_name": "board",
+      "product_price": 734.25,
+      "product_img": "https://dummyimage.com/425x771",
+      "product_discount": 20,
+      "product_cat": 4,
+      "product_status": "pre_order",
+      "id": "17a8"
+    },
+    {
+      "product_id": 25,
+      "product_name": "question",
+      "product_price": 762.45,
+      "product_img": "https://placeimg.com/243/748/any",
+      "product_discount": 0,
+      "product_cat": 6,
+      "product_status": "out_of_stock",
+      "id": "c744"
+    },
+    {
+      "product_id": 26,
+      "product_name": "drug",
+      "product_price": 731.87,
+      "product_img": "https://www.lorempixel.com/860/831",
+      "product_discount": 11,
+      "product_cat": 4,
+      "product_status": "available",
+      "id": "6e3b"
+    },
+    {
+      "product_id": 27,
+      "product_name": "write",
+      "product_price": 361.05,
+      "product_img": "https://www.lorempixel.com/929/218",
+      "product_discount": 9,
+      "product_cat": 2,
+      "product_status": "available",
+      "id": "fe64"
+    },
+    {
+      "product_id": 28,
+      "product_name": "really",
+      "product_price": 652.11,
+      "product_img": "https://www.lorempixel.com/922/450",
+      "product_discount": 18,
+      "product_cat": 7,
+      "product_status": "pre_order",
+      "id": "b152"
+    },
+    {
+      "product_id": 29,
+      "product_name": "alone",
+      "product_price": 152.64,
+      "product_img": "https://www.lorempixel.com/323/307",
+      "product_discount": 30,
+      "product_cat": 6,
+      "product_status": "available",
+      "id": "7c8d"
+    },
+    {
+      "product_id": 30,
+      "product_name": "rise",
+      "product_price": 256.07,
+      "product_img": "https://placekitten.com/199/945",
+      "product_discount": 24,
+      "product_cat": 7,
+      "product_status": "out_of_stock",
+      "id": "4e07"
+    },
+    {
+      "product_id": 31,
+      "product_name": "other",
+      "product_price": 85.54,
+      "product_img": "https://www.lorempixel.com/277/426",
+      "product_discount": 21,
+      "product_cat": 1,
+      "product_status": "available",
+      "id": "46c0"
+    },
+    {
+      "product_id": 32,
+      "product_name": "reflect",
+      "product_price": 698.88,
+      "product_img": "https://dummyimage.com/414x365",
+      "product_discount": 27,
+      "product_cat": 4,
+      "product_status": "pre_order",
+      "id": "6e22"
+    },
+    {
+      "product_id": 33,
+      "product_name": "power",
+      "product_price": 261.56,
+      "product_img": "https://placeimg.com/914/428/any",
+      "product_discount": 16,
+      "product_cat": 1,
+      "product_status": "available",
+      "id": "9c66"
+    },
+    {
+      "product_id": 34,
+      "product_name": "time",
+      "product_price": 428.29,
+      "product_img": "https://placekitten.com/613/165",
+      "product_discount": 27,
+      "product_cat": 4,
+      "product_status": "available",
+      "id": "5b39"
+    },
+    {
+      "product_id": 35,
+      "product_name": "nature",
+      "product_price": 669.28,
+      "product_img": "https://www.lorempixel.com/606/883",
+      "product_discount": 28,
+      "product_cat": 5,
+      "product_status": "available",
+      "id": "737f"
+    },
+    {
+      "product_id": 36,
+      "product_name": "though",
+      "product_price": 626.85,
+      "product_img": "https://www.lorempixel.com/749/89",
+      "product_discount": 11,
+      "product_cat": 10,
+      "product_status": "out_of_stock",
+      "id": "cff6"
+    },
+    {
+      "product_id": 37,
+      "product_name": "technology",
+      "product_price": 286.59,
+      "product_img": "https://dummyimage.com/232x104",
+      "product_discount": 5,
+      "product_cat": 3,
+      "product_status": "pre_order",
+      "id": "055d"
+    },
+    {
+      "product_id": 38,
+      "product_name": "worry",
+      "product_price": 431.5,
+      "product_img": "https://placekitten.com/182/467",
+      "product_discount": 13,
+      "product_cat": 5,
+      "product_status": "out_of_stock",
+      "id": "5be6"
+    },
+    {
+      "product_id": 39,
+      "product_name": "despite",
+      "product_price": 116.44,
+      "product_img": "https://www.lorempixel.com/731/325",
+      "product_discount": 30,
+      "product_cat": 2,
+      "product_status": "available",
+      "id": "315d"
+    },
+    {
+      "product_id": 40,
+      "product_name": "letter",
+      "product_price": 686.82,
+      "product_img": "https://www.lorempixel.com/266/352",
+      "product_discount": 20,
+      "product_cat": 5,
+      "product_status": "out_of_stock",
+      "id": "85ef"
+    },
+    {
+      "product_id": 41,
+      "product_name": "any",
+      "product_price": 761.65,
+      "product_img": "https://placekitten.com/345/584",
+      "product_discount": 20,
+      "product_cat": 7,
+      "product_status": "out_of_stock",
+      "id": "a1b6"
+    },
+    {
+      "product_id": 42,
+      "product_name": "activity",
+      "product_price": 121.4,
+      "product_img": "https://placeimg.com/985/365/any",
+      "product_discount": 13,
+      "product_cat": 7,
+      "product_status": "pre_order",
+      "id": "afd7"
+    },
+    {
+      "product_id": 43,
+      "product_name": "sit",
+      "product_price": 634.69,
+      "product_img": "https://www.lorempixel.com/255/302",
+      "product_discount": 9,
+      "product_cat": 2,
+      "product_status": "pre_order",
+      "id": "c307"
+    },
+    {
+      "product_id": 44,
+      "product_name": "although",
+      "product_price": 607.67,
+      "product_img": "https://placekitten.com/740/363",
+      "product_discount": 21,
+      "product_cat": 6,
+      "product_status": "pre_order",
+      "id": "36f0"
+    },
+    {
+      "product_id": 45,
+      "product_name": "sit",
+      "product_price": 169.26,
+      "product_img": "https://dummyimage.com/925x124",
+      "product_discount": 15,
+      "product_cat": 10,
+      "product_status": "pre_order",
+      "id": "d653"
+    },
+    {
+      "product_id": 46,
+      "product_name": "film",
+      "product_price": 791.66,
+      "product_img": "https://www.lorempixel.com/226/411",
+      "product_discount": 23,
+      "product_cat": 2,
+      "product_status": "pre_order",
+      "id": "7981"
+    },
+    {
+      "product_id": 47,
+      "product_name": "former",
+      "product_price": 827.68,
+      "product_img": "https://www.lorempixel.com/877/80",
+      "product_discount": 13,
+      "product_cat": 5,
+      "product_status": "out_of_stock",
+      "id": "6f9d"
+    },
+    {
+      "product_id": 48,
+      "product_name": "or",
+      "product_price": 770.58,
+      "product_img": "https://placeimg.com/227/581/any",
+      "product_discount": 0,
+      "product_cat": 8,
+      "product_status": "pre_order",
+      "id": "e942"
+    },
+    {
+      "product_id": 49,
+      "product_name": "scientist",
+      "product_price": 370.95,
+      "product_img": "https://dummyimage.com/921x89",
+      "product_discount": 4,
+      "product_cat": 6,
+      "product_status": "out_of_stock",
+      "id": "2f3d"
+    },
+    {
+      "product_id": 50,
+      "product_name": "piece",
+      "product_price": 877.09,
+      "product_img": "https://www.lorempixel.com/1021/447",
+      "product_discount": 26,
+      "product_cat": 4,
+      "product_status": "available",
+      "id": "39c5"
+    },
+    {
+      "id": "04be",
+      "product_id": 51,
+      "product_img": "http://localhost:3001/uploads/1733192945095-857327942.png",
+      "product_name": "đấ",
+      "product_price": 323,
+      "product_discount": 32,
+      "product_cat": 9,
+      "product_status": "unavailable"
+    },
+    {
+      "id": "e301",
+      "product_id": 52,
+      "product_img": "http://localhost:3001/uploads/1733193096611-493226993.png",
+      "product_name": "dsssd",
+      "product_price": 3333,
+      "product_discount": 24,
+      "product_cat": 8,
+      "product_status": "unavailable"
+    },
+    {
+      "id": "572b",
+      "product_id": 53,
+      "product_img": "http://localhost:3001/uploads/1733206542339-920041484.png",
+      "product_name": "adad",
+      "product_price": 2131,
+      "product_discount": 11,
+      "product_cat": 7,
+      "product_status": "unavailable"
+    }
+  ],
+  "users": [
+    {
+      "user_id": 1,
+      "user_name": "Michael Werner",
+      "user_email": "thomas60@swanson-white.com",
+      "user_password": "2$Z1Qyth@9",
+      "user_phone": "001-956-337-6566x583",
+      "user_address": "123 Main St, New York, NY 10001",
+      "user_role": "customer",
+      "id": "4cc4",
+      "user_status": true
+    },
+    {
+      "user_id": 2,
+      "user_name": "Ryan Weiss",
+      "user_email": "travis78@gmail.com",
+      "user_password": "y+b5N)nE@$",
+      "user_phone": "8929457029",
+      "user_address": "456 Elm St, Los Angeles, CA 90001",
+      "user_role": "customer",
+      "id": "ce5d",
+      "user_status": true
+    },
+    {
+      "user_id": 3,
+      "user_name": "Charles Ray",
+      "user_email": "ronaldward@hotmail.com",
+      "user_password": "4O1Q2uLdq(",
+      "user_phone": "6428752100",
+      "user_address": "789 Pine St, Chicago, IL 60601",
+      "user_role": "customer",
+      "id": "86d0",
+      "user_status": true
+    },
+    {
+      "user_id": 4,
+      "user_name": "Angela Jones",
+      "user_email": "robertlewis@yahoo.com",
+      "user_password": "09GWfL3W(N",
+      "user_phone": "4553338402",
+      "user_address": "101 Maple St, Houston, TX 77001",
+      "user_role": "customer",
+      "id": "eac2",
+      "user_status": true
+    },
+    {
+      "user_id": 5,
+      "user_name": "Tina Shelton",
+      "user_email": "jeremy56@gmail.com",
+      "user_password": "^2Kg6jW)f7",
+      "user_phone": "+1-978-616-6259x31179",
+      "user_address": "202 Oak St, Phoenix, AZ 85001",
+      "user_role": "customer",
+      "id": "113c",
+      "user_status": true
+    },
+    {
+      "user_id": 6,
+      "user_name": "Dan Rose",
+      "user_email": "wardstacey@morales-franklin.com",
+      "user_password": "c^4MPuXp*i",
+      "user_phone": "393-350-0050x93077",
+      "user_address": "303 Birch St, Philadelphia, PA 19101",
+      "user_role": "admin",
+      "id": "280f",
+      "user_status": true,
+      "permissions": [
+        "Manage Categories",
+        "Manage admin",
+        "Manage Admin",
+        "Manage Orders"
+      ],
+      "user_image": "http://localhost:3001/uploads/1733195592946-432995815.png"
+    },
+    {
+      "user_id": 7,
+      "user_name": "Ruth Wilson",
+      "user_email": "wsanders@hotmail.com",
+      "user_password": "S8%JKH+e(P",
+      "user_phone": "774-632-2689x853",
+      "user_address": "404 Cedar St, San Antonio, TX 78201",
+      "user_role": "admin",
+      "id": "f591",
+      "permissions": [
+        "Manage Admin",
+        "Manage Categories"
+      ]
+    },
+    {
+      "user_id": 8,
+      "user_name": "Jesus Fernandez",
+      "user_email": "kgilbert@wang-harper.com",
+      "user_password": "r4TQ+vhG_*",
+      "user_phone": "001-337-811-3669x2669",
+      "user_address": "505 Willow St, San Diego, CA 92101",
+      "user_role": "admin",
+      "id": "1081",
+      "user_status": true,
+      "permissions": [
+        "Manage Categories",
+        "Manage Admin"
+      ]
+    },
+    {
+      "user_id": 9,
+      "user_name": "Oscar Mitchell",
+      "user_email": "cyoung@brock.info",
+      "user_password": "4!W2FowqQl",
+      "user_phone": "755.368.8459x88845",
+      "user_address": "606 Fir St, Dallas, TX 75201",
+      "user_role": "staff",
+      "id": "dd55",
+      "user_status": true,
+      "permissions": [
+        "Manage Products",
+        "Manage Orders"
+      ]
+    },
+    {
+      "user_id": 10,
+      "user_name": "Peggy Foster",
+      "user_email": "sosathomas@hotmail.com",
+      "user_password": "u@T5LQyCAR",
+      "user_phone": "+1-113-242-0675x3337",
+      "user_address": "707 Redwood St, San Jose, CA 95101",
+      "user_role": "customer",
+      "id": "5dc1",
+      "user_status": true
+    },
+    {
+      "user_id": 11,
+      "user_name": "Manuel Schwartz",
+      "user_email": "dlogan@mason.net",
+      "user_password": "Yj9y#A7q!^",
+      "user_phone": "283.121.9583x9587",
+      "user_address": "808 Ash St, Austin, TX 73301",
+      "user_role": "admin",
+      "id": "f68d",
+      "user_status": true
+    },
+    {
+      "user_id": 12,
+      "user_name": "Angela Johnson",
+      "user_email": "tammy83@gmail.com",
+      "user_password": "*P&JpIHvV5",
+      "user_phone": "+1-166-592-9340x92624",
+      "user_address": "909 Palm St, Jacksonville, FL 32201",
+      "user_role": "admin",
+      "id": "31f5"
+    },
+    {
+      "user_id": 13,
+      "user_name": "Omar Ford",
+      "user_email": "justin24@hotmail.com",
+      "user_password": "4P(m85Dt&y",
+      "user_phone": "530-614-2161",
+      "user_address": "1001 Chestnut St, Fort Worth, TX 76101",
+      "user_role": "customer",
+      "id": "0040",
+      "user_status": true
+    },
+    {
+      "user_id": 14,
+      "user_name": "Brittany Stanley",
+      "user_email": "rhonda18@yahoo.com",
+      "user_password": "57SMRmqF@9",
+      "user_phone": "636-216-8516x89233",
+      "user_address": "1112 Spruce St, Columbus, OH 43201",
+      "user_role": "admin",
+      "id": "294a"
+    },
+    {
+      "user_id": 15,
+      "user_name": "Cameron Carter",
+      "user_email": "villanuevakyle@gmail.com",
+      "user_password": "*mw3YB9zrx",
+      "user_phone": "244.057.7144x7023",
+      "user_address": "1213 Poplar St, Charlotte, NC 28201",
+      "user_role": "customer",
+      "id": "dfc3"
+    },
+    {
+      "user_id": 16,
+      "user_name": "Deborah Hubbard",
+      "user_email": "william71@yahoo.com",
+      "user_password": "dK7$SBRsc_",
+      "user_phone": "835-669-5251",
+      "user_address": "1314 Cedar Ave, Indianapolis, IN 46201",
+      "user_role": "customer",
+      "id": "7320"
+    },
+    {
+      "user_id": 17,
+      "user_name": "Michelle Richards",
+      "user_email": "haydenjohnny@gmail.com",
+      "user_password": "j0Mg)^pg+2",
+      "user_phone": "000.364.9421",
+      "user_address": "1415 Birch Ave, Seattle, WA 98101",
+      "user_role": "admin",
+      "id": "1d8c",
+      "user_status": true
+    },
+    {
+      "user_id": 18,
+      "user_name": "James Morton",
+      "user_email": "kerrsharon@yahoo.com",
+      "user_password": "bC+&2Qb6@I",
+      "user_phone": "(637)483-2038x119",
+      "user_address": "1516 Elm Ave, Denver, CO 80201",
+      "user_role": "admin",
+      "id": "05c6",
+      "user_status": true
+    },
+    {
+      "user_id": 19,
+      "user_name": "Gloria Hughes",
+      "user_email": "mthomas@mullins-johnson.com",
+      "user_password": "W+2V^JDewa",
+      "user_phone": "+1-084-351-8158x718",
+      "user_address": "1617 Maple Ave, Boston, MA 02101",
+      "user_role": "customer",
+      "id": "4414",
+      "user_status": true
+    },
+    {
+      "user_id": 20,
+      "user_name": "Lindsey Anthony",
+      "user_email": "thomasmark@hotmail.com",
+      "user_password": "!0Kb_CaKJy",
+      "user_phone": "784.367.3169",
+      "user_address": "1718 Oak Ave, Nashville, TN 37201",
+      "user_role": "admin",
+      "id": "c0d6"
+    },
+    {
+      "id": "c83e",
+      "user_id": 21,
+      "user_name": "đádsđa",
+      "user_email": "sadsa",
+      "user_phone": "dsad",
+      "user_address": "sad",
+      "user_role": "customer",
+      "user_status": true,
+      "user_image": "http://localhost:3001/uploads/1733188039142-979306656.png"
+    },
+    {
+      "id": "44fe",
+      "user_id": 22,
+      "user_name": "đâs",
+      "user_email": "đấ",
+      "user_phone": "đá",
+      "user_address": "dsadsa",
+      "user_role": "customer",
+      "user_status": true,
+      "user_image": "http://localhost:3001/uploads/1733188380506-816868950.png"
+    },
+    {
+      "id": "b67c",
+      "user_id": 23,
+      "user_name": "đâs",
+      "user_email": "dsad",
+      "user_phone": "ádas",
+      "user_address": "đáád",
+      "user_role": "customer",
+      "user_status": false,
+      "user_image": "http://localhost:3001/uploads/1733188529535-12410302.png"
+    },
+    {
+      "id": "18d3",
+      "user_id": 24,
+      "user_name": "Nguyễn Khắc Duy",
+      "user_email": "sadsad@gmail.com",
+      "user_phone": "005156",
+      "user_address": "13",
+      "user_role": "Staff",
+      "user_status": false,
+      "permissions": [
+        "Manage Categories"
+      ],
+      "user_image": "http://localhost:3001/uploads/1733194902153-340596129.png"
+    },
+    {
+      "id": "6284",
+      "user_id": 25,
+      "user_name": "Nguyễn Khắc Duy",
+      "user_email": "g@gmail.com",
+      "user_phone": "0274454",
+      "user_address": "13",
+      "user_role": "Admin",
+      "user_status": true,
+      "permissions": [
+        "Manage Categories",
+        "Manage Products",
+        "Manage Orders"
+      ],
+      "user_image": "http://localhost:3001/uploads/1733195088192-795391427.png"
+    },
+    {
+      "id": "1209",
+      "user_id": 26,
+      "user_name": "sada",
+      "user_email": "adasd",
+      "user_phone": "ádsad",
+      "user_address": "ádsa",
+      "user_role": "admin",
+      "user_status": true,
+      "permissions": [
+        "Manage Categories",
+        "Manage Orders"
+      ],
+      "user_image": "http://localhost:3001/uploads/1733195212771-551707634.png"
+    },
+    {
+      "id": "9c56",
+      "user_id": 27,
+      "user_name": "ewqeqqeq32311",
+      "user_email": "qwe@gmail.com",
+      "user_phone": "01546848",
+      "user_address": "eqweqweqe",
+      "user_role": "customer",
+      "user_status": true,
+      "user_image": "http://localhost:3001/uploads/1733205022465-211194786.png"
+    },
+    {
+      "id": "e831",
+      "user_id": 28,
+      "user_name": "đấ",
+      "user_email": "ádad",
+      "user_phone": "eqwe21",
+      "user_address": "đa",
+      "user_role": "customer",
+      "user_status": false,
+      "user_image": "http://localhost:3001/uploads/1733205101507-589249812.png"
+    }
+  ],
+  "bill_details": [
+    {
+      "bill_detail_id": 1,
+      "bill_id": 19,
+      "product_id": 50,
+      "quantity": 2,
+      "id": "2e6d"
+    },
+    {
+      "bill_detail_id": 2,
+      "bill_id": 17,
+      "product_id": 21,
+      "quantity": 1,
+      "id": "034f"
+    },
+    {
+      "bill_detail_id": 3,
+      "bill_id": 2,
+      "product_id": 32,
+      "quantity": 1,
+      "id": "da0c"
+    },
+    {
+      "bill_detail_id": 4,
+      "bill_id": 15,
+      "product_id": 6,
+      "quantity": 1,
+      "id": "b44f"
+    },
+    {
+      "bill_detail_id": 5,
+      "bill_id": 18,
+      "product_id": 29,
+      "quantity": 2,
+      "id": "3be9"
+    },
+    {
+      "bill_detail_id": 6,
+      "bill_id": 20,
+      "product_id": 2,
+      "quantity": 1,
+      "id": "6e2d"
+    },
+    {
+      "bill_detail_id": 7,
+      "bill_id": 14,
+      "product_id": 24,
+      "quantity": 4,
+      "id": "8b5c"
+    },
+    {
+      "bill_detail_id": 8,
+      "bill_id": 20,
+      "product_id": 37,
+      "quantity": 4,
+      "id": "1533"
+    },
+    {
+      "bill_detail_id": 9,
+      "bill_id": 3,
+      "product_id": 11,
+      "quantity": 3,
+      "id": "8b0e"
+    },
+    {
+      "bill_detail_id": 10,
+      "bill_id": 3,
+      "product_id": 2,
+      "quantity": 2,
+      "id": "4c87"
+    },
+    {
+      "bill_detail_id": 11,
+      "bill_id": 15,
+      "product_id": 39,
+      "quantity": 5,
+      "id": "d00d"
+    },
+    {
+      "bill_detail_id": 12,
+      "bill_id": 5,
+      "product_id": 17,
+      "quantity": 1,
+      "id": "d378"
+    },
+    {
+      "bill_detail_id": 13,
+      "bill_id": 6,
+      "product_id": 26,
+      "quantity": 5,
+      "id": "9819"
+    },
+    {
+      "bill_detail_id": 14,
+      "bill_id": 15,
+      "product_id": 6,
+      "quantity": 4,
+      "id": "c8a6"
+    },
+    {
+      "bill_detail_id": 15,
+      "bill_id": 9,
+      "product_id": 8,
+      "quantity": 4,
+      "id": "719e"
+    },
+    {
+      "bill_detail_id": 16,
+      "bill_id": 3,
+      "product_id": 2,
+      "quantity": 4,
+      "id": "d781"
+    },
+    {
+      "bill_detail_id": 17,
+      "bill_id": 5,
+      "product_id": 49,
+      "quantity": 2,
+      "id": "e9a1"
+    },
+    {
+      "bill_detail_id": 18,
+      "bill_id": 19,
+      "product_id": 34,
+      "quantity": 5,
+      "id": "f8df"
+    },
+    {
+      "bill_detail_id": 19,
+      "bill_id": 4,
+      "product_id": 15,
+      "quantity": 3,
+      "id": "3d67"
+    },
+    {
+      "bill_detail_id": 20,
+      "bill_id": 2,
+      "product_id": 16,
+      "quantity": 4,
+      "id": "37b1"
+    },
+    {
+      "bill_detail_id": 21,
+      "bill_id": 14,
+      "product_id": 43,
+      "quantity": 2,
+      "id": "9564"
+    },
+    {
+      "bill_detail_id": 22,
+      "bill_id": 7,
+      "product_id": 10,
+      "quantity": 5,
+      "id": "9b45"
+    },
+    {
+      "bill_detail_id": 23,
+      "bill_id": 4,
+      "product_id": 13,
+      "quantity": 1,
+      "id": "b551"
+    },
+    {
+      "bill_detail_id": 24,
+      "bill_id": 9,
+      "product_id": 39,
+      "quantity": 3,
+      "id": "ccf2"
+    },
+    {
+      "bill_detail_id": 25,
+      "bill_id": 1,
+      "product_id": 15,
+      "quantity": 1,
+      "id": "6ad3"
+    },
+    {
+      "bill_detail_id": 26,
+      "bill_id": 17,
+      "product_id": 31,
+      "quantity": 4,
+      "id": "cb31"
+    },
+    {
+      "bill_detail_id": 27,
+      "bill_id": 11,
+      "product_id": 24,
+      "quantity": 2,
+      "id": "e9d4"
+    },
+    {
+      "bill_detail_id": 28,
+      "bill_id": 7,
+      "product_id": 30,
+      "quantity": 3,
+      "id": "278e"
+    },
+    {
+      "bill_detail_id": 29,
+      "bill_id": 4,
+      "product_id": 32,
+      "quantity": 3,
+      "id": "6e7e"
+    },
+    {
+      "bill_detail_id": 30,
+      "bill_id": 4,
+      "product_id": 14,
+      "quantity": 4,
+      "id": "8020"
+    },
+    {
+      "bill_detail_id": 31,
+      "bill_id": 9,
+      "product_id": 19,
+      "quantity": 4,
+      "id": "6864"
+    },
+    {
+      "bill_detail_id": 32,
+      "bill_id": 5,
+      "product_id": 12,
+      "quantity": 1,
+      "id": "b7a5"
+    },
+    {
+      "bill_detail_id": 33,
+      "bill_id": 8,
+      "product_id": 42,
+      "quantity": 2,
+      "id": "8d7c"
+    },
+    {
+      "bill_detail_id": 34,
+      "bill_id": 15,
+      "product_id": 19,
+      "quantity": 3,
+      "id": "6e2d"
+    },
+    {
+      "bill_detail_id": 35,
+      "bill_id": 7,
+      "product_id": 10,
+      "quantity": 5,
+      "id": "9d76"
+    },
+    {
+      "bill_detail_id": 36,
+      "bill_id": 7,
+      "product_id": 4,
+      "quantity": 4,
+      "id": "9dab"
+    },
+    {
+      "bill_detail_id": 37,
+      "bill_id": 11,
+      "product_id": 32,
+      "quantity": 1,
+      "id": "ff18"
+    },
+    {
+      "bill_detail_id": 38,
+      "bill_id": 11,
+      "product_id": 22,
+      "quantity": 3,
+      "id": "57fc"
+    },
+    {
+      "bill_detail_id": 39,
+      "bill_id": 19,
+      "product_id": 21,
+      "quantity": 3,
+      "id": "3335"
+    },
+    {
+      "bill_detail_id": 40,
+      "bill_id": 2,
+      "product_id": 1,
+      "quantity": 4,
+      "id": "e314"
+    },
+    {
+      "bill_detail_id": 41,
+      "bill_id": 2,
+      "product_id": 23,
+      "quantity": 1,
+      "id": "16ee"
+    },
+    {
+      "bill_detail_id": 42,
+      "bill_id": 1,
+      "product_id": 1,
+      "quantity": 3,
+      "id": "ba99"
+    },
+    {
+      "bill_detail_id": 43,
+      "bill_id": 18,
+      "product_id": 34,
+      "quantity": 4,
+      "id": "ebb1"
+    },
+    {
+      "bill_detail_id": 44,
+      "bill_id": 8,
+      "product_id": 18,
+      "quantity": 2,
+      "id": "5606"
+    },
+    {
+      "bill_detail_id": 45,
+      "bill_id": 9,
+      "product_id": 1,
+      "quantity": 3,
+      "id": "4b9a"
+    },
+    {
+      "bill_detail_id": 46,
+      "bill_id": 9,
+      "product_id": 4,
+      "quantity": 1,
+      "id": "389e"
+    },
+    {
+      "bill_detail_id": 47,
+      "bill_id": 12,
+      "product_id": 18,
+      "quantity": 3,
+      "id": "e598"
+    },
+    {
+      "bill_detail_id": 48,
+      "bill_id": 3,
+      "product_id": 12,
+      "quantity": 4,
+      "id": "1bb9"
+    },
+    {
+      "bill_detail_id": 49,
+      "bill_id": 7,
+      "product_id": 31,
+      "quantity": 3,
+      "id": "1d54"
+    },
+    {
+      "bill_detail_id": 50,
+      "bill_id": 14,
+      "product_id": 50,
+      "quantity": 2,
+      "id": "930a"
+    }
+  ],
+  "bills": [
+    {
+      "bill_id": 1,
+      "user_id": 19,
+      "total_amount": 4684.36,
+      "bill_date": "2024-10-12 09:42:25",
+      "id": "50d5"
+    },
+    {
+      "bill_id": 2,
+      "user_id": 10,
+      "total_amount": 1236.07,
+      "bill_date": "2024-10-23 11:51:10",
+      "id": "9532"
+    },
+    {
+      "bill_id": 3,
+      "user_id": 6,
+      "total_amount": 1344.5,
+      "bill_date": "2024-09-04 00:29:12",
+      "id": "d9a8"
+    },
+    {
+      "bill_id": 4,
+      "user_id": 7,
+      "total_amount": 3485.14,
+      "bill_date": "2024-05-26 08:26:43",
+      "id": "0010"
+    },
+    {
+      "bill_id": 5,
+      "user_id": 18,
+      "total_amount": 1471.29,
+      "bill_date": "2024-05-22 16:28:08",
+      "id": "2894"
+    },
+    {
+      "bill_id": 6,
+      "user_id": 1,
+      "total_amount": 316.27,
+      "bill_date": "2024-05-13 11:48:32",
+      "id": "c368"
+    },
+    {
+      "bill_id": 7,
+      "user_id": 11,
+      "total_amount": 4062.08,
+      "bill_date": "2024-08-10 04:52:12",
+      "id": "9708"
+    },
+    {
+      "bill_id": 8,
+      "user_id": 17,
+      "total_amount": 3322.73,
+      "bill_date": "2024-02-28 16:42:19",
+      "id": "83b3"
+    },
+    {
+      "bill_id": 9,
+      "user_id": 13,
+      "total_amount": 666.24,
+      "bill_date": "2024-10-30 08:38:45",
+      "id": "f869"
+    },
+    {
+      "bill_id": 10,
+      "user_id": 15,
+      "total_amount": 468.62,
+      "bill_date": "2024-07-20 16:16:42",
+      "id": "29e7"
+    },
+    {
+      "bill_id": 11,
+      "user_id": 7,
+      "total_amount": 4533.66,
+      "bill_date": "2024-09-17 17:05:44",
+      "id": "7b59"
+    },
+    {
+      "bill_id": 12,
+      "user_id": 6,
+      "total_amount": 1779.19,
+      "bill_date": "2024-07-08 18:19:44",
+      "id": "af3f"
+    },
+    {
+      "bill_id": 13,
+      "user_id": 7,
+      "total_amount": 4259.2,
+      "bill_date": "2024-07-20 15:22:56",
+      "id": "c4c9"
+    },
+    {
+      "bill_id": 14,
+      "user_id": 4,
+      "total_amount": 4431.54,
+      "bill_date": "2024-03-13 04:28:23",
+      "id": "d339"
+    },
+    {
+      "bill_id": 15,
+      "user_id": 16,
+      "total_amount": 3094.44,
+      "bill_date": "2024-11-17 06:53:30",
+      "id": "c52c"
+    },
+    {
+      "bill_id": 16,
+      "user_id": 8,
+      "total_amount": 4018.32,
+      "bill_date": "2024-07-18 23:31:33",
+      "id": "80e2"
+    },
+    {
+      "bill_id": 17,
+      "user_id": 20,
+      "total_amount": 687.62,
+      "bill_date": "2024-02-22 18:27:55",
+      "id": "28b6"
+    },
+    {
+      "bill_id": 18,
+      "user_id": 2,
+      "total_amount": 3612.33,
+      "bill_date": "2024-04-08 00:59:43",
+      "id": "ccdb"
+    },
+    {
+      "bill_id": 19,
+      "user_id": 10,
+      "total_amount": 3864.59,
+      "bill_date": "2024-03-26 20:02:48",
+      "id": "5ba1"
+    },
+    {
+      "bill_id": 20,
+      "user_id": 7,
+      "total_amount": 2147.67,
+      "bill_date": "2024-04-28 01:35:27",
+      "id": "77a9"
+    },
+    {
+      "bill_id": 21,
+      "user_id": 3,
+      "total_amount": 4192.56,
+      "bill_date": "2024-08-27 13:17:43",
+      "id": "a11f"
+    },
+    {
+      "bill_id": 22,
+      "user_id": 14,
+      "total_amount": 4005.49,
+      "bill_date": "2024-10-26 21:31:03",
+      "id": "a5ba"
+    },
+    {
+      "bill_id": 23,
+      "user_id": 18,
+      "total_amount": 2555.48,
+      "bill_date": "2024-09-03 22:40:36",
+      "id": "50e9"
+    },
+    {
+      "bill_id": 24,
+      "user_id": 18,
+      "total_amount": 1056.58,
+      "bill_date": "2024-05-17 14:23:31",
+      "id": "1f69"
+    },
+    {
+      "bill_id": 25,
+      "user_id": 9,
+      "total_amount": 4464.52,
+      "bill_date": "2024-10-20 20:11:44",
+      "id": "6899"
+    },
+    {
+      "bill_id": 26,
+      "user_id": 16,
+      "total_amount": 2457.9,
+      "bill_date": "2024-08-24 04:06:56",
+      "id": "8ed7"
+    },
+    {
+      "bill_id": 27,
+      "user_id": 16,
+      "total_amount": 4696.1,
+      "bill_date": "2024-09-01 06:24:45",
+      "id": "43c5"
+    },
+    {
+      "bill_id": 28,
+      "user_id": 13,
+      "total_amount": 4292.32,
+      "bill_date": "2024-01-14 22:19:40",
+      "id": "efe6"
+    },
+    {
+      "bill_id": 29,
+      "user_id": 13,
+      "total_amount": 4604.51,
+      "bill_date": "2024-07-02 12:47:12",
+      "id": "09a8"
+    },
+    {
+      "bill_id": 30,
+      "user_id": 14,
+      "total_amount": 483.86,
+      "bill_date": "2024-07-03 19:15:19",
+      "id": "117a"
+    }
+  ],
+  "product_status": [
+    {
+      "status_id": 1,
+      "status_name": "available",
+      "status_desc": "Product is available for purchase.",
+      "id": "7136"
+    },
+    {
+      "status_id": 2,
+      "status_name": "out_of_stock",
+      "status_desc": "Product is currently out of stock.",
+      "id": "3c17"
+    },
+    {
+      "status_id": 3,
+      "status_name": "pre_order",
+      "status_desc": "Product is available for pre-order.",
+      "id": "90f5"
+    }
+  ]
+}
