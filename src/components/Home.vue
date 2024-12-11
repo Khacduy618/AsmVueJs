@@ -21,11 +21,12 @@
               <router-link to="/order" class="btn btn-primary btn-sm">View All</router-link>
             </div>
             <div class="table-responsive">
-              <table class="table custom-table">
+              <table class="table table-hover custom-table">
                 <thead>
                   <tr>
                     <th class="text-center">Order ID</th>
                     <th class="text-center">Amount</th>
+                    <th class="text-center">Status</th>
                     <th class="text-center">Date</th>
                   </tr>
                 </thead>
@@ -37,6 +38,8 @@
                     <td class="text-center">
                       <span class="amount">${{ order.total_amount.toFixed(2) }}</span>
                     </td>
+                    <td>
+                      <span class="status">{{ order.bill_status }}</span></td>
                     <td>
                       <span class="date">{{ formatDate(order.bill_date) }}</span>
                     </td>
@@ -343,32 +346,37 @@ onMounted(() => {
 
 .card {
   background: #fff;
-  padding: 1.25rem;
-  border-radius: 10px;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
   border: none;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
+.card:hover {
+  transform: translateY(-5px);
+}
+
 .numbers {
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #333;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .cardName {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: #666;
   margin-bottom: 0;
 }
 
 .iconBx {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #ff5733;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .heading {
@@ -501,14 +509,15 @@ onMounted(() => {
 @media (max-width: 768px) {
   .cardBox {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   
   .numbers {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
   
   .iconBx {
-    font-size: 1.75rem;
+    font-size: 2rem;
   }
 }
 </style>

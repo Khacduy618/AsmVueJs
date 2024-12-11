@@ -6,7 +6,7 @@ import Item from "../components/ItemManagement/Item.vue";
 import Customer from "../components/CustomerManagement/Customer.vue";
 import Order from "../components/OrderManagement/Order.vue";
 import Category from "../components/CategoryManagement/Category.vue";
-import Decentralization from "../components/Decentralization/Decentralization.vue";
+import Roles from "../components/Roles/Roles.vue";
 import axios from 'axios'
 axios.defaults.baseURL = 'http://localhost:3000'
 
@@ -25,7 +25,7 @@ const routes = [
     { path: '/order', name: 'Order', component: Order,meta: { requiresAuth: true } },
     { path: '/login', name: 'Login', component: Login,meta: { requiresGuest: true } },
     { path: '/register', name: 'Register', component: Register },
-    { path: '/decentralization', name: 'Decentralization', component: Decentralization,meta: { requiresAuth: true } },
+    { path: '/roles', name: 'Roles', component: Roles,meta: { requiresAuth: true } },
 ];
 
 const router = createRouter({

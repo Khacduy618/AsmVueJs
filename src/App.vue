@@ -1,4 +1,3 @@
-
 <template>
   <nav v-if="isAuthenticated" class="navbar">
   <ul  class="navbar-nav">
@@ -6,13 +5,13 @@
       <router-link class="nav-link" to="">
         <span class="icon">
           <div class="user">
-            <img :src="userImg" alt="User Image">
+            <img :src="userImage || userImg" alt="User Image">
           </div>
         </span>
-        <span class="title">{{ Name }} name</span>
+        <span class="title">{{ userName }}</span>
       </router-link>
     </li>
-    <li class="nav-item">
+    <li v-if="hasAccess('dashboard')" class="nav-item">
       <router-link class="nav-link" to="/home">
         <span class="icon">
           <ion-icon name="home-outline"></ion-icon>
@@ -20,7 +19,7 @@
         <span class="title">Dashboard</span>
       </router-link>
     </li>
-    <li class="nav-item">
+    <li v-if="hasAccess('categories')" class="nav-item">
       <router-link class="nav-link" to="/category">
         <span class="icon">
           <ion-icon name="pricetags-outline"></ion-icon>
@@ -28,7 +27,7 @@
         <span class="title">Category Management</span>
       </router-link>
     </li>
-    <li class="nav-item">
+    <li v-if="hasAccess('products')" class="nav-item">
       <router-link class="nav-link" to="/item">
         <span class="icon">
           <ion-icon name="list-circle-outline"></ion-icon>
@@ -36,7 +35,7 @@
         <span class="title">Item Management</span>
       </router-link>
     </li>
-    <li class="nav-item">
+    <li v-if="hasAccess('customers')" class="nav-item">
       <router-link class="nav-link" to="/customer">
         <span class="icon">
           <ion-icon name="albums-outline"></ion-icon>
@@ -44,15 +43,7 @@
         <span class="title">Customer Management</span>
       </router-link>
     </li>
-    <li class="nav-item">
-      <router-link class="nav-link" to="/decentralization">
-        <span class="icon">
-          <ion-icon name="pricetags-outline"></ion-icon>
-        </span>
-        <span class="title">Decentralization</span>
-      </router-link>
-    </li>
-    <li class="nav-item">
+    <li v-if="hasAccess('orders')" class="nav-item">
       <router-link class="nav-link" to="/order">
         <span class="icon">
           <ion-icon name="pricetags-outline"></ion-icon>
@@ -60,12 +51,19 @@
         <span class="title">Order Management</span>
       </router-link>
     </li>
-
+    <li v-if="hasAccess('roles')" class="nav-item">
+      <router-link class="nav-link" to="/roles">
+        <span class="icon">
+          <ion-icon name="people-outline"></ion-icon>
+        </span>
+        <span class="title">Staff Management</span>
+      </router-link>
+    </li>
   </ul>
 
 </nav>
 <div class="main" :class="{'active': !isAuthenticated}">
-  <div v-if="isAuthenticated" class="topbar">
+  <div v-if="isAuthenticated" class="container-fluid topbar">
     <div class="toggle" @click="toggleMenu">
       <ion-icon name="menu-outline"></ion-icon>
     </div>
@@ -86,14 +84,46 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, provide } from 'vue';
+import { ref, onMounted, onUnmounted, provide,computed } from 'vue';
 import img from './assets/image/man.png';
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 const router = useRouter()
 const isAuthenticated = ref(false)
 const error = ref(false)
 const isAdmin = ref(false)
+
+// State để lưu trữ roles và permissions
+const roles = ref([])
+const userPermissions = ref([])
+
+// Lấy thông tin user từ localStorage
+const user = computed(() => {
+  return JSON.parse(localStorage.getItem('user') || '{}')
+})
+
+// Fetch roles và permissions từ API
+const fetchRolesAndPermissions = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/roles')
+    roles.value = response.data
+    
+    // Tìm role của user hiện tại
+    const userRole = roles.value.find(role => role.id === user.value.user_role)
+    if (userRole) {
+      userPermissions.value = userRole.permissions
+    }
+  } catch (error) {
+    console.error('Error fetching roles:', error)
+  }
+}
+
+// Kiểm tra quyền truy cập
+const hasAccess = (menuId) => {
+  const permission = userPermissions.value.find(p => p.id === menuId)
+  return permission && ['curate'].includes(permission.access)
+}
 
 // Tạo hàm để cập nhật trạng thái xác thực
 const updateAuthStatus = (status, userRole) => {
@@ -112,8 +142,26 @@ const updateAuthStatus = (status, userRole) => {
   isAuthenticated.value = status
   error.value = false
   isAdmin.value = true
-}
 
+  if(status === true){
+    setTimeout(() => {
+      window.location.reload()
+    }, 1);
+  }
+}
+// Add these computed properties
+const userName = computed(() => {
+  const user = JSON.parse(localStorage.getItem('user') || '{}')
+  return user.user_name || 'Admin'
+})
+const userRole = computed(() => {
+  const user = JSON.parse(localStorage.getItem('user') || '{}')
+  return user.user_role || 'Admin'
+})
+const userImage = computed(() => {
+  const user = JSON.parse(localStorage.getItem('user') || '{}')
+  return user.user_image
+})
 // Kiểm tra token khi component được mount
 const checkAuth = () => {
   const token = localStorage.getItem('token')
@@ -185,6 +233,7 @@ const toggleDacBiet = (checkbox) => {
 };
 onMounted(() => {
   checkAuth()
+  fetchRolesAndPermissions()
 })
 
 </script>
@@ -328,14 +377,12 @@ onMounted(() => {
 
 .toggle {
   position: relative;
-  width: 60px;
   height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2.5rem;
   cursor: pointer;
-  padding-left: 20px
 }
 
 .search {

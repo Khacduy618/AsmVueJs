@@ -73,8 +73,8 @@
   
       <!-- List View -->
       <div v-else-if="viewMode === 'list'" class="table-responsive">
-        <table class="table align-middle">
-          <thead class="bg-light">
+        <table class="table table-hover align-middle">
+          <thead >
             <tr>
               <th @click="setSortBy('id')" class="cursor-pointer">
                 ID # <i class="bi" :class="getSortIcon('id')"></i>
@@ -230,10 +230,17 @@
                         @change="handleImageUpload"
                         :class="{ 'is-invalid': formErrors.image }"
                       >
+                      <span class="input-group-text">
+                        <i class="bi bi-check-circle-fill text-success" v-if="imageFile"></i>
+                        <i class="bi bi-image text-muted" v-else></i>
+                      </span>
                     </div>
-                    <div class="invalid-feedback">{{ formErrors.image }}</div>
-                    <small class="text-muted">
-                      Leave empty to keep existing image when editing
+                    <div v-if="formErrors.image" class="invalid-feedback d-block">{{ formErrors.image }}</div>
+                    <small v-else-if="imageFile == '' || imageFile == null" class="text-muted">
+                      Suggested image size is around 2mb and less than 150px x 150px
+                    </small>
+                    <small v-else class="text-success">
+                      <i class="bi bi-check-circle-fill"></i> Image selected successfully
                     </small>
                   </div>
 
@@ -380,28 +387,64 @@
     }
   }
   
+  const validateImage = (file) => {
+    return new Promise((resolve, reject) => {
+      if (!file) {
+        reject(new Error('No file selected'))
+        return
+      }
+
+      // Check file type
+      if (!file.type.match(/^image\/(jpeg|png|gif)$/)) {
+        reject(new Error('Please upload a valid image file (JPEG, PNG, or GIF)'))
+        return
+      }
+
+      // Check file size (2MB limit)
+      if (file.size > 2 * 1024 * 1024) {
+        reject(new Error('Image size should be less than 2MB'))
+        return
+      }
+
+      const img = new Image()
+      img.src = URL.createObjectURL(file)
+
+      img.onload = () => {
+        URL.revokeObjectURL(img.src)
+        if (img.width > 150 || img.height > 150) {
+          reject(new Error('Image dimensions should not exceed 150x150 pixels'))
+        } else {
+          resolve(true)
+        }
+      }
+
+      img.onerror = () => {
+        URL.revokeObjectURL(img.src)
+        reject(new Error('Failed to load image for validation'))
+      }
+    })
+  }
+  
   const validateForm = () => {
     const errors = {}
     
-    if (!formData.value.category_name?.trim()) {
+    // Name validation
+    const nameValue = formData.value.category_name?.trim()
+    if (!nameValue) {
       errors.name = 'Name is required'
+    } else if (nameValue.length < 5) {
+      errors.name = 'Name must be at least 5 characters long'
+    } else if (!/^[A-Za-z][A-Za-z\s]*$/.test(nameValue)) {
+      errors.name = 'Name must start with a letter and contain only letters and spaces'
     }
     
-    if (!formData.value.category_desc?.trim()) {
+    // Description validation
+    const descValue = formData.value.category_desc?.trim()
+    if (!descValue) {
       errors.description = 'Description is required'
+    } else if (descValue.length < 10) {
+      errors.description = 'Description must be at least 10 characters long'
     }
-    
-    // Kiểm tra image chỉ khi thêm mới và không có imageFile
-    if (!isEditing.value && !imageFile.value && !formData.value.category_img) {
-      errors.image = 'Image is required'
-    }
-
-    // Debug log
-    console.log('Validation:', {
-      imageFile: imageFile.value,
-      formData: formData.value,
-      errors
-    })
 
     formErrors.value = errors
     return Object.keys(errors).length === 0
@@ -411,13 +454,22 @@
     if (!validateForm()) return
   
     try {
+      // Step 1: Upload image first (if there's a new image)
       let imagePath = formData.value.category_img
-      
       if (imageFile.value) {
-        imagePath = await uploadImage(imageFile.value)
-        if (!imagePath) throw new Error('Failed to upload image')
+        try {
+          imagePath = await uploadImage(imageFile.value)
+          if (!imagePath) {
+            throw new Error('Failed to upload image')
+          }
+        } catch (err) {
+          // Show image upload error to user
+          error.value = 'Image upload failed: ' + (err.response?.data?.message || err.message || 'Please try again')
+          return // Stop here if image upload fails
+        }
       }
-      
+
+      // Step 2: Submit category data
       const categoryData = {
         ...formData.value,
         category_img: imagePath
@@ -431,6 +483,7 @@
         if (!categoryId) throw new Error('Category not found')
       }
 
+      // Submit to API
       const baseUrl = '/categories'
       const response = await axios({
         method: isEditing.value ? 'put' : 'post',
@@ -441,11 +494,16 @@
         }
       })
 
+      // Success handling
       await fetchCategories()
       closeCategoryModal()
+      
+      // Show success message
+      alert(isEditing.value ? 'Category updated successfully!' : 'Category added successfully!')
+
     } catch (err) {
       console.error('Submit error:', err)
-      error.value = err.response?.data?.message || err.message || 'An error occurred'
+      error.value = err.response?.data?.message || err.message || 'Failed to save category'
     }
   }
   
@@ -477,7 +535,8 @@
     if (searchQuery.value) {
       const query = searchQuery.value.toLowerCase()
       filtered = filtered.filter(c => 
-        c.category_name.toLowerCase().includes(query)
+        c.category_name.toLowerCase().includes(query) ||
+        c.category_desc.toLowerCase().includes(query)
       )
     }
     // Sorting
@@ -607,58 +666,41 @@
     activeMenu.value = null
   }
   
-  // Add image handling methods
-  const handleImageUpload = (event) => {
+  // Enhanced image upload handler
+  const handleImageUpload = async (event) => {
     const file = event.target.files[0]
     if (!file) return
-    
-    // Kiểm tra file type
-    if (!file.type.match(/image.*/)) {
-      formErrors.value.image = 'Please upload an image file'
-      return
+
+    try {
+      await validateImage(file)
+      imageFile.value = file
+      imagePreview.value = URL.createObjectURL(file)
+      formErrors.value.image = ''
+    } catch (err) {
+      formErrors.value.image = err.message
+      imageFile.value = null
+      imagePreview.value = null
+      event.target.value = ''
     }
-    
-    // Kiểm tra file size (ví dụ: max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      formErrors.value.image = 'Image size should be less than 5MB'
-      return
-    }
-    
-    imageFile.value = file
-    // Create preview
-    imagePreview.value = URL.createObjectURL(file)
-    
-    // Clear error if exists
-    formErrors.value.image = ''
-    
-    console.log('Image uploaded:', {
-      file: imageFile.value,
-      preview: imagePreview.value
-    })
   }
   
   const uploadImage = async (file) => {
-    if (!file) return null;
+    if (!file) return null
     
-    const formData = new FormData();
-    formData.append('image', file);
+    const formData = new FormData()
+    formData.append('image', file)
     
     try {
-      const response = await fetch('http://localhost:3001/uploads', {
-        method: 'POST',
-        body: formData
-      });
+      const response = await axios.post('http://localhost:3001/uploads', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
       
-      if (!response.ok) {
-        const error = await response.text();
-        throw new Error(error || 'Failed to upload image');
-      }
-      
-      const data = await response.json();
-      return `http://localhost:3001${data.imagePath}`;
+      return `http://localhost:3001${response.data.imagePath}`
     } catch (err) {
-      console.error('Image upload failed:', err);
-      throw err;
+      console.error('Image upload error:', err)
+      throw new Error(err.response?.data?.message || 'Failed to upload image')
     }
   }
   

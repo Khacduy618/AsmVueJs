@@ -28,9 +28,8 @@
       <div class="fill col-md-2">
         <select class="form-select" v-model="statusFilter">
           <option value="">All Status</option>
-          <option value="available">Available</option>
-          <option value="out_of_stock">Out of Stock</option>
-          <option value="pre_order">Pre Order</option>
+          <option value="true">Active</option>
+          <option value="false">Inactive</option>
         </select>
       </div>
       <div class="fill col-md-2">
@@ -38,10 +37,9 @@
           <option value="id">Sort by id</option>
           <option value="name">Sort by Name</option>
           <option value="price">Sort by Price</option>
-          <option value="category">Sort by Category</option>
         </select>
       </div>
-      <div class="col-md-3 d-flex justify-content-end gap-3 align-items-center">
+      <div class="col-md-3 ms-auto d-flex justify-content-end gap-3 align-items-center">
         <div class="btn-group">
           <button 
             class="btn" 
@@ -127,7 +125,7 @@
             <td>{{ item.product_discount }}%</td>
             <td>
               <span class="status-badge" :class="getStatusClass(item.product_status)">
-                {{ item.product_status.replace('_', ' ') }}
+                {{ item.product_status ? 'Active' : 'Inactive' }}
               </span>
             </td>
             <td>
@@ -188,9 +186,12 @@
                 <input 
                   class="form-check-input" 
                   type="checkbox" 
-                  :checked="item.product_status === 'available'"
+                  :checked="item.product_status"
                   @change="toggleStatus(item)"
                 >
+                <span class="ms-2" :class="getStatusClass(item.product_status)">
+                  {{ item.product_status ? 'Active' : 'Inactive' }}
+                </span>
               </div>
               <div class="btn-group">
                 <button class="btn btn-light btn-sm" @click="viewDetails(item)">
@@ -256,20 +257,36 @@
           <div class="modal-body">
             <form @submit.prevent="submitItem">
               <div class="mb-3">
-                <img 
-                        :src="imagePreview || formData.product_img || 'https://via.placeholder.com/150'" 
-                        class="rounded preview-img"
-                        :alt="formData.product_name || 'product preview'"
-                        style="max-width: 200px; height: auto;"
-                      >
-                <input 
-                        type="file" 
-                  class="form-control" 
-                  accept="image/*"
-                  @change="handleImageUpload"
-                  :class="{ 'is-invalid': formErrors.product_img }"
-                >
-                <div class="invalid-feedback">{{ formErrors.product_img }}</div>
+                <div class="text-center mb-3">
+                  <img 
+                    :src="imagePreview || formData.product_img || 'https://via.placeholder.com/150'" 
+                    class="rounded preview-img"
+                    :alt="formData.product_name || 'product preview'"
+                    style="max-width: 200px; height: auto;"
+                  >
+                </div>
+                
+                <label class="form-label">Product Image</label>
+                <div class="input-group">
+                  <input 
+                    type="file" 
+                    class="form-control" 
+                    accept="image/*"
+                    @change="handleImageUpload"
+                    :class="{ 'is-invalid': formErrors.product_img }"
+                  >
+                  <span class="input-group-text">
+                    <i class="bi bi-check-circle-fill text-success" v-if="imageFile"></i>
+                    <i class="bi bi-image text-muted" v-else></i>
+                  </span>
+                </div>
+                <div v-if="formErrors.product_img" class="invalid-feedback d-block">{{ formErrors.product_img }}</div>
+                <small v-else-if="imageFile == '' || imageFile == null" class="text-muted">
+                  Suggested image size is around 2mb and less than 150px x 150px
+                </small>
+                <small v-else class="text-success">
+                  <i class="bi bi-check-circle-fill"></i> Image selected successfully
+                </small>
               </div>
 
               <div class="mb-3">
@@ -339,9 +356,8 @@
                   class="form-select"
                   v-model="formData.product_status"
                 >
-                  <option value="available">Available</option>
-                  <option value="out_of_stock">Out of Stock</option>
-                  <option value="pre_order">Pre Order</option>
+                  <option :value="true">Active</option>
+                  <option :value="false">Inactive</option>
                 </select>
               </div>
 
@@ -394,7 +410,7 @@
                 <p class="mb-2">
                   <strong>Status:</strong> 
                   <span :class="getStatusClass(selecteditem.product_status)">
-                    {{ selecteditem.product_status.replace('_', ' ') }}
+                    {{ selecteditem.product_status ? 'Active' : 'Inactive' }}
                   </span>
                 </p>
               </div>
@@ -413,7 +429,7 @@
           </div>
           <div class="modal-body">
             <p>Are you sure you want to delete this item?</p>
-            <p class="text-danger"><small>This will mark the item as unavailable.</small></p>
+            <p class="text-danger"><small>This will mark the item as inactive.</small></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" @click="closeDeleteModal">Cancel</button>
@@ -465,7 +481,7 @@ const formData = ref({
   product_img: '',
   product_discount: 0,
   product_cat: '',
-  product_status: 'available'
+  product_status: true
 })
 const formErrors = ref({})
 const isEditing = ref(false)
@@ -485,14 +501,24 @@ const filteredItems = computed(() => {
 
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
-    result = result.filter(item => 
-      item.product_name.toLowerCase().includes(query)
-    )
+    result = result.filter(item => {
+      // Tìm theo tên sản phẩm
+      const nameMatch = item.product_name.toLowerCase().includes(query)
+      
+      // Tìm theo tên danh mục
+      const category = categories.value.find(cat => 
+        Number(cat.category_id) === Number(item.product_cat)
+      )
+      const categoryMatch = category?.category_name.toLowerCase().includes(query)
+      
+      // Trả về true nếu khớp với tên sản phẩm hoặc tên danh mục
+      return nameMatch || categoryMatch
+    })
   }
 
   if (categoryFilter.value) {
     result = result.filter(item => 
-      item.product_cat.toString() === categoryFilter.value
+      Number(item.product_cat) === Number(categoryFilter.value)
     )
   }
 
@@ -569,30 +595,39 @@ const getSortIcon = (field) => {
 const validateForm = () => {
   const errors = {}
   
-  if (!formData.value.product_name) {
+  // Name validation
+  const nameValue = formData.value.product_name?.trim()
+  if (!nameValue) {
     errors.product_name = 'Name is required'
+  } else if (nameValue.length < 5) {
+    errors.product_name = 'Name must be at least 5 characters long'
+  } else if (!/^[A-Za-z][A-Za-z0-9\s]*$/.test(nameValue)) {
+    errors.product_name = 'Name must start with a letter and contain only letters, numbers and spaces'
   }
-  
-  if (!formData.value.product_price) {
+
+  // Price validation
+  const price = parseFloat(formData.value.product_price)
+  if (!price && price !== 0) {
     errors.product_price = 'Price is required'
-  } else if (formData.value.product_price <= 0) {
+  } else if (price <= 0) {
     errors.product_price = 'Price must be greater than 0'
+  } else if (price > 1000000) {
+    errors.product_price = 'Price cannot exceed 1,000,000'
   }
-  
+
+  // Category validation
   if (!formData.value.product_cat) {
     errors.product_cat = 'Category is required'
   }
-  
-  // Validate discount
-  if (formData.value.product_discount < 0) {
+
+  // Discount validation
+  const discount = parseInt(formData.value.product_discount)
+  if (isNaN(discount)) {
+    errors.product_discount = 'Discount must be a number'
+  } else if (discount < 0) {
     errors.product_discount = 'Discount cannot be negative'
-  } else if (formData.value.product_discount > 100) {
+  } else if (discount > 100) {
     errors.product_discount = 'Discount cannot exceed 100%'
-  }
-  
-  // Only validate image for new items
-  if (!isEditing.value && !imageFile.value && !formData.value.product_img) {
-    errors.product_img = 'Image is required'
   }
 
   formErrors.value = errors
@@ -613,7 +648,7 @@ const resetForm = async () => {
       product_price: 0,
       product_discount: 0,
       product_cat: '',
-      product_status: 'available'
+      product_status: true
     }
     imageFile.value = null
     imagePreview.value = null
@@ -683,7 +718,7 @@ const submitItem = async () => {
 
     const baseUrl = 'http://localhost:3000/products'
     if (isEditing.value) {
-      // Tìm ID chính xác c��a item đang edit
+      // Tìm ID chính xác của item đang edit
       const existingItem = items.value.find(item => item.product_id === formData.value.product_id)
       if (!existingItem) throw new Error('Item not found')
       
@@ -708,12 +743,9 @@ const submitItem = async () => {
 // Toggle status
 const toggleStatus = async (item) => {
   try {
-    const newStatus = item.product_status === 'available' ? 'out_of_stock' : 'available'
-    
     await axios.patch(`http://localhost:3000/products/${item.id}`, {
-      product_status: newStatus
+      product_status: !item.product_status
     })
-
     await fetchItems()
   } catch (err) {
     console.error('Error updating status:', err)
@@ -762,33 +794,65 @@ const getCategoryName = (categoryId) => {
 }
 
 const getStatusClass = (status) => {
-  const classes = {
-    'available': 'bg-success-subtle text-success',
-    'out_of_stock': 'bg-danger-subtle text-danger',
-    'pre_order': 'bg-warning-subtle text-warning',
-    'unavailable': 'bg-secondary-subtle text-secondary'
-  }
-  return classes[status] || 'bg-secondary-subtle text-secondary'
+  return status 
+    ? 'bg-success-subtle text-success'  // Active
+    : 'bg-danger-subtle text-danger'    // Inactive
 }
 
 // Image handling
-const handleImageUpload = (event) => {
+const validateImage = (file) => {
+  return new Promise((resolve, reject) => {
+    if (!file) {
+      reject(new Error('No file selected'))
+      return
+    }
+
+    // Check file type
+    if (!file.type.match(/^image\/(jpeg|png|gif)$/)) {
+      reject(new Error('Please upload a valid image file (JPEG, PNG, or GIF)'))
+      return
+    }
+
+    // Check file size (2MB limit)
+    if (file.size > 2 * 1024 * 1024) {
+      reject(new Error('Image size should be less than 2MB'))
+      return
+    }
+
+    const img = new Image()
+    img.src = URL.createObjectURL(file)
+
+    img.onload = () => {
+      URL.revokeObjectURL(img.src)
+      if (img.width > 150 || img.height > 150) {
+        reject(new Error('Image dimensions should not exceed 150x150 pixels'))
+      } else {
+        resolve(true)
+      }
+    }
+
+    img.onerror = () => {
+      URL.revokeObjectURL(img.src)
+      reject(new Error('Failed to load image for validation'))
+    }
+  })
+}
+
+const handleImageUpload = async (event) => {
   const file = event.target.files[0]
   if (!file) return
-  
-  if (!file.type.match(/image.*/)) {
-    formErrors.value.image = 'Please upload an image file'
-    return
+
+  try {
+    await validateImage(file)
+    imageFile.value = file
+    imagePreview.value = URL.createObjectURL(file)
+    formErrors.value.product_img = ''
+  } catch (err) {
+    formErrors.value.product_img = err.message
+    imageFile.value = null
+    imagePreview.value = null
+    event.target.value = '' // Reset input
   }
-  
-  if (file.size > 5 * 1024 * 1024) {
-    formErrors.value.image = 'Image size should be less than 5MB'
-    return
-  }
-  
-  imageFile.value = file
-  imagePreview.value = URL.createObjectURL(file)
-  formErrors.value.image = ''
 }
 
 // Fetch items from API
@@ -845,24 +909,17 @@ const confirmDelete = async () => {
   try {
     if (!itemToDelete.value) return
 
-    const response = await fetch(`http://localhost:3000/products/${itemToDelete.value.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        product_status: 'unavailable'
-      })
+    // Update status to false using axios
+    await axios.patch(`http://localhost:3000/products/${itemToDelete.value.id}`, {
+      product_status: false
     })
-
-    if (!response.ok) throw new Error('Failed to delete item')
-
+    
     // Refresh the items list
     await fetchItems()
     closeDeleteModal()
     
-    // Show success message (optional)
-    alert('Item has been marked as unavailable')
+    // Show success message
+    alert('Delete Success')
   } catch (err) {
     console.error('Delete error:', err)
     error.value = 'Failed to delete item'

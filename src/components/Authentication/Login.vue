@@ -38,10 +38,11 @@ const login = async () => {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
       
       // Cập nhật trạng thái xác thực
-      updateAuthStatus(true)
+      updateAuthStatus(true,user.user_role)
       
       // Chuyển hướng dựa vào role
-      if (user.user_role !== 'customer') {
+      if (user.user_role !== '0') {
+
         router.push('/home')
       } else {
         localStorage.removeItem('token')

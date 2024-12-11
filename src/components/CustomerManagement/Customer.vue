@@ -11,7 +11,7 @@
             type="text" 
             class="form-control" 
             v-model="searchQuery"
-            placeholder="Search customer..."
+            placeholder="Search by name, email or address..."
           >
         </div>
       </div>
@@ -19,8 +19,8 @@
       <div class="fill col-md-2">
         <select class="form-select" v-model="statusFilter">
           <option value="">All Status</option>
-          <option value="true">Available</option>
-          <option value="false">Unavailable</option>
+          <option value="true">Active</option>
+          <option value="false">Inactive</option>
         </select>
       </div>
       <div class="fill col-md-2">
@@ -89,7 +89,6 @@
             <th>Email</th>
             <th>Phone Number</th>
             <th>Address</th>
-            <th @click="setSortBy('role')" class="cursor-pointer">Role <i class="bi" :class="getSortIcon('role')"></i></th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -108,13 +107,8 @@
             <td>{{ customer.user_name }}</td>
             <td>{{ customer.user_email }}</td>
             <td>{{ customer.user_phone }}</td>
-            <td>{{ customer.user_address }}</td>
-            <td>
-              <span class="category-badge" :class="getRoleClass(customer.user_role)">
-                <i :class="getRoleIcon(customer.user_role)"></i>
-                {{ customer.user_role }}
-              </span>
-            </td>
+            <td>{{ customer.street }}, {{ customer.city }}, {{ customer.country }}</td>
+            
             <td>
               <div class="status-switch form-switch">
                 <input 
@@ -125,7 +119,7 @@
                   @change="toggleStatus(customer)"
                 >
                 <label class="status-switch-label" :for="'status' + customer.user_id">
-                  {{ customer.user_status ? 'Available' : 'Unavailable' }}
+                  {{ customer.user_status ? 'Active' : 'Inactive' }}
                 </label>
               </div>
             </td>
@@ -169,9 +163,7 @@
             <p class="card-text text-truncate">{{ customer.user_email }}</p>
               <h6 class="h5 mb-1">{{ customer.user_phone }}</h6>
               <h6 class="h5 mb-1">{{ customer.user_address }}</h6>
-              <h6 class="category-badge" :class="getRoleClass(customer.user_role)">
-                {{ customer.user_role }}
-              </h6>
+              
           </div>
           <div class="card-footer bg-white">
             <div class="d-flex justify-content-between align-items-center">
@@ -263,13 +255,18 @@
                         accept="image/*"
                         @change="handleImageUpload"
                         :class="{ 'is-invalid': formErrors.image }"
-                      >
+                      > <span class="input-group-text">
+                        <i class="bi bi-check-circle-fill text-success" v-if="imageFile"></i>
+                        <i class="bi bi-image text-muted" v-else></i>
+                      </span>
                     </div>
-                    <div class="invalid-feedback">{{ formErrors.image }}</div>
-                    <small class="text-muted">
-                      Leave empty to keep existing image when editing
-                    </small>
-                  <div class="invalid-feedback">{{ formErrors.image }}</div>
+                    <div v-if="formErrors.image" class="invalid-feedback d-block">{{ formErrors.image }}</div>
+                <small v-else-if="imageFile == '' || imageFile == null" class="text-muted">
+                  Suggested image size is around 2mb and less than 150px x 150px
+                </small>
+                <small v-else class="text-success">
+                  <i class="bi bi-check-circle-fill"></i> Image selected successfully
+                </small>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Name</label>
@@ -310,14 +307,55 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Address</label>
-                  <input 
-                    type="text" 
-                    class="form-control" 
-                    v-model="formData.user_address"
-                    :class="{ 'is-invalid': formErrors.user_address }"
-                    required
-                  >
-                  <div class="invalid-feedback">{{ formErrors.user_address }}</div>
+                  <div class="row g-3">
+                    <div class="col-md-12">
+                      <label class="form-label">Street</label>
+                      <input 
+                        type="text" 
+                        class="form-control" 
+                        v-model="formData.street"
+                        :class="{ 'is-invalid': formErrors.street }"
+                        required
+                      >
+                      <div class="invalid-feedback">{{ formErrors.street }}</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Country</label>
+                      <select 
+                        class="form-select" 
+                        v-model="formData.country"
+                        :class="{ 'is-invalid': formErrors.country }"
+                        @change="handleCountryChange"
+                        required
+                      >
+                        <option value="">Select Country</option>
+                        <option v-for="country in countries" 
+                                :key="country.code" 
+                                :value="country.name">
+                          {{ country.name }}
+                        </option>
+                      </select>
+                      <div class="invalid-feedback">{{ formErrors.country }}</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">City</label>
+                      <select 
+                        class="form-select" 
+                        v-model="formData.city"
+                        :class="{ 'is-invalid': formErrors.city }"
+                        required
+                        :disabled="!formData.country || !cities.length"
+                      >
+                        <option value="">Select City</option>
+                        <option v-for="city in cities" 
+                                :key="city" 
+                                :value="city">
+                          {{ city }}
+                        </option>
+                      </select>
+                      <div class="invalid-feedback">{{ formErrors.city }}</div>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-12 d-flex justify-content-between">
                    
@@ -330,7 +368,7 @@
                           v-model="formData.user_status"
                         >
                         <label class="form-check-label">
-                          {{ formData.user_status ? 'Available' : 'Unavailable' }}
+                          {{ formData.user_status ? 'Active' : 'Inactive' }}
                         </label>
                       </div>
                     </div>
@@ -372,17 +410,14 @@
                 <h4>{{ selecteditem.user_name }}</h4>
                 <h5>{{ selecteditem.user_email }}</h5>
                 <h5>{{ selecteditem.user_phone }}</h5>
-                <h5>{{ selecteditem.user_address }}</h5>
+                <h5>{{ selecteditem.street }}, {{ selecteditem.city }}, {{ selecteditem.country }}</h5>
                 <div class="mb-3">
-                  <span class="category-badge" :class="getRoleClass(selecteditem.user_role)">
-                    <i :class="getRoleIcon(selecteditem.user_role)"></i>
-                    {{ selecteditem.user_role }}
-                  </span>
+                 
                   <span 
                     class="status-badge ms-2" 
                     :class="selecteditem.user_status ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger'"
                   >
-                    {{ selecteditem.user_status ? 'Available' : 'Unavailable' }}
+                    {{ selecteditem.user_status ? 'Active' : 'Inactive' }}
                   </span>
                 </div>
               </div>
@@ -398,11 +433,9 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
+import { Country, State, City }  from 'country-state-city';
 import { Modal } from 'bootstrap'
 import axios from 'axios'
-
-
-
 
 
 const activeMenu = ref(null)
@@ -412,14 +445,15 @@ const error = ref(null)
 const customers = ref([])
 const selecteditem = ref(null)
 const searchQuery = ref('')
-const roleFilter = ref('')
 const statusFilter = ref('')
 const sortBy = ref('id')
 const sortDirection = ref('asc')
 const currentPage = ref(1)
 const customersPerPage = ref(12)
 
-
+console.log(Country.getAllCountries())
+console.log(State.getAllStates())
+console.log(City.getAllCities())
 const toggleActionMenu = (customerId) => {
   activeMenu.value = activeMenu.value === customerId ? null : customerId
 }
@@ -433,8 +467,10 @@ const formData = ref({
   user_name: '',
   user_email: '',
   user_phone: '',
-  user_address: '',
-  user_role: 'customer',
+  street: '',
+  city: '',
+  country: '',
+  user_role: '0',
   user_status: true
 })
 const formErrors = ref({})
@@ -447,24 +483,24 @@ const customerModal = ref(null)
 const viewModal = ref(null)
 
 
-
-
-
-
 const filteredcustomers = computed(() => {
   let filtered = [...customers.value]
 
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
-    filtered = filtered.filter(c => 
-      c.user_name.toLowerCase().includes(query)
+    filtered = filtered.filter(customer => 
+      // Tìm theo tên
+      customer.user_name?.toLowerCase().includes(query) ||
+      // Tìm theo email
+      customer.user_email?.toLowerCase().includes(query) ||
+      // Tìm theo địa chỉ (street, city, country)
+      customer.street?.toLowerCase().includes(query) ||
+      customer.city?.toLowerCase().includes(query) ||
+      customer.country?.toLowerCase().includes(query)
     )
   }
 
-  if (roleFilter.value) {
-    filtered = filtered.filter(c => c.user_role === roleFilter.value)
-  }
-
+  // Filter by status
   if (statusFilter.value !== '') {
     const status = statusFilter.value === 'true'
     filtered = filtered.filter(c => c.user_status === status)
@@ -477,8 +513,6 @@ const filteredcustomers = computed(() => {
       comparison = parseInt(a.user_id) - parseInt(b.user_id)
     } else if(sortBy.value === 'name') {
       comparison = a.user_name.localeCompare(b.user_name)
-    } else if(sortBy.value === 'role') {
-      comparison = a.user_role.localeCompare(b.user_role)
     }
     return sortDirection.value === 'asc' ? comparison : -comparison
   })
@@ -512,7 +546,7 @@ const fetchCustomers = async () => {
     loading.value = true
     const response = await axios.get('http://localhost:3000/users')
     const allUsers = response.data
-    customers.value = allUsers.filter(user => user.user_role.toLowerCase() === 'customer')
+    customers.value = allUsers.filter(user => user.user_role === '0')
   } catch (err) {
     error.value = 'Failed to load customers. Please try again.'
     console.error('Error loading customers:', err)
@@ -543,19 +577,59 @@ const getSortIcon = (field) => {
 const validateForm = () => {
   const errors = {}
   
-  if (!formData.value.user_name) errors.user_name = 'Name is required'
-  if (!formData.value.user_email) errors.user_email = 'Email is required'
-  if (!formData.value.user_phone) errors.user_phone = 'Phone number is required'
-  if (!formData.value.user_address) errors.user_address = 'Address is required'
-  
-  // Only validate image for new customers
+  // Name validation
+  const nameValue = formData.value.user_name?.trim()
+  if (!nameValue) {
+    errors.user_name = 'Name is required'
+  } else if (nameValue.length < 3) {
+    errors.user_name = 'Name must be at least 3 characters long'
+  } else if (!/^[A-Za-z][A-Za-z0-9\s]*$/.test(nameValue)) {
+    errors.user_name = 'Name must start with a letter and contain only letters, numbers and spaces'
+  }
+
+  // Email validation
+  const emailValue = formData.value.user_email?.trim()
+  if (!emailValue) {
+    errors.user_email = 'Email is required'
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+    errors.user_email = 'Please enter a valid email address'
+  }
+
+  // Phone validation
+  const phoneValue = formData.value.user_phone?.trim()
+  if (!phoneValue) {
+    errors.user_phone = 'Phone number is required'
+  } else if (!/^[0-9]{10,11}$/.test(phoneValue)) {
+    errors.user_phone = 'Phone number must be 10-11 digits'
+  }
+
+  // Street validation
+  const streetValue = formData.value.street?.trim()
+  if (!streetValue) {
+    errors.street = 'Street address is required'
+  } else if (streetValue.length < 5) {
+    errors.street = 'Street address must be at least 5 characters long'
+  }
+
+  // Country validation
+  if (!formData.value.country) {
+    errors.country = 'Please select a country'
+  }
+
+  // City validation
+  if (!formData.value.city) {
+    errors.city = 'Please select a city'
+  }
+
+  // Image validation for new customers
   if (!isEditing.value && !imageFile.value && !formData.value.user_image) {
-    errors.user_image = 'Image is required'
+    errors.image = 'Profile image is required'
   }
 
   formErrors.value = errors
   return Object.keys(errors).length === 0
 }
+
 const resetForm = async () => {
   try {
     const response = await axios.get('http://localhost:3000/users')
@@ -567,10 +641,13 @@ const resetForm = async () => {
       user_name: "",
       user_email: "",
       user_phone: "",
-      user_address: "",
-      user_role: "customer",
+      street: "",
+      city: "",
+      country: "",
+      user_role: "0",
       user_status: true
     }
+    cities.value = [] // Reset cities list
     imageFile.value = null
     imagePreview.value = null
     formErrors.value = {}
@@ -604,6 +681,62 @@ const closecustomerModal = () => {
     resetForm()
   }
 }
+
+const validateImage = (file) => {
+  return new Promise((resolve, reject) => {
+    if (!file) {
+      reject(new Error('No file selected'))
+      return
+    }
+
+    // Check file type
+    if (!file.type.match(/^image\/(jpeg|png|gif)$/)) {
+      reject(new Error('Please upload a valid image file (JPEG, PNG, or GIF)'))
+      return
+    }
+
+    // Check file size (2MB limit)
+    if (file.size > 2 * 1024 * 1024) {
+      reject(new Error('Image size should be less than 2MB'))
+      return
+    }
+
+    const img = new Image()
+    img.src = URL.createObjectURL(file)
+
+    img.onload = () => {
+      URL.revokeObjectURL(img.src)
+      if (img.width > 150 || img.height > 150) {
+        reject(new Error('Image dimensions should not exceed 150x150 pixels'))
+      } else {
+        resolve(true)
+      }
+    }
+
+    img.onerror = () => {
+      URL.revokeObjectURL(img.src)
+      reject(new Error('Failed to load image for validation'))
+    }
+  })
+}
+
+const handleImageUpload = async (event) => {
+  const file = event.target.files[0]
+  if (!file) return
+
+  try {
+    await validateImage(file)
+    imageFile.value = file
+    imagePreview.value = URL.createObjectURL(file)
+    formErrors.value.image = ''
+  } catch (err) {
+    formErrors.value.image = err.message
+    imageFile.value = null
+    imagePreview.value = null
+    event.target.value = '' // Reset input
+  }
+}
+
 const submitCustomer = async () => {
   if (!validateForm()) return
 
@@ -696,49 +829,7 @@ const uploadImage = async (file) => {
     throw err;
   }
 }
-const getRoleClass = (role) => {
-  const classes = {
-    'customer': 'bg-warning-subtle text-warning'
-  }
-  return classes[role] || 'bg-secondary-subtle text-secondary'
-}
 
-const getRoleIcon = (role) => {
-  const icons = {
-    'customer': 'bi bi-egg-fried'
-  }
-  return icons[role] || 'bi bi-tag'
-}
-// Add image handling methods
-const handleImageUpload = (event) => {
-    const file = event.target.files[0]
-    if (!file) return
-    
-    // Kiểm tra file type
-    if (!file.type.match(/image.*/)) {
-      formErrors.value.image = 'Please upload an image file'
-      return
-    }
-    
-    // Kiểm tra file size (ví dụ: max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      formErrors.value.image = 'Image size should be less than 5MB'
-      return
-    }
-    
-    imageFile.value = file
-    // Create preview
-    imagePreview.value = URL.createObjectURL(file)
-    
-    // Clear error if exists
-    formErrors.value.image = ''
-    
-    console.log('Image uploaded:', {
-      file: imageFile.value,
-      preview: imagePreview.value
-    })
-  }
-  
 
 watch([searchQuery, statusFilter], () => {
   currentPage.value = 1
@@ -751,6 +842,55 @@ watch(customersPerPage, () => {
 onMounted(() => {
   fetchCustomers()
 })
+
+const countries = ref([])
+const cities = ref([])
+const states = ref([])
+
+// Fetch countries khi component được mount
+onMounted(async () => {
+  await fetchCustomers()
+  fetchCountries()
+})
+
+// Fetch danh sách countries
+const fetchCountries = () => {
+  try {
+    countries.value = Country.getAllCountries().map(country => ({
+      name: country.name,
+      code: country.isoCode,
+      flag: country.flag
+    }))
+  } catch (err) {
+    console.error('Error fetching countries:', err)
+    error.value = 'Failed to load countries'
+  }
+}
+
+// Cập nhật hàm handleCountryChange
+const handleCountryChange = () => {
+  formData.value.city = '' // Reset city when country changes
+  cities.value = []
+  states.value = []
+  
+  if (!formData.value.country) return
+  
+  try {
+    // Lấy country code
+    const selectedCountry = countries.value.find(c => c.name === formData.value.country)
+    if (selectedCountry) {
+      // Lấy danh sách states c���a country
+      states.value = State.getStatesOfCountry(selectedCountry.code)
+      
+      // Lấy tất cả thành phố của country
+      const allCities = City.getCitiesOfCountry(selectedCountry.code)
+      cities.value = allCities.map(city => city.name)
+    }
+  } catch (err) {
+    console.error('Error fetching cities:', err)
+    error.value = 'Failed to load cities'
+  }
+}
 </script>
 
 <style scoped>

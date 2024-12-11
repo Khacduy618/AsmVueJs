@@ -3,8 +3,8 @@
     {
       "category_id": 1,
       "category_name": "family",
-      "category_desc": "Cover beyond beyond expect knowledge change power.",
-      "category_img": "https://placeimg.com/640/480/family",
+      "category_desc": "Cover beyasdasdond beyond expect knowledge change power.",
+      "category_img": "http://localhost:3001/uploads/1733208436444-341595765.png",
       "id": "3d1b"
     },
     {
@@ -69,47 +69,54 @@
       "category_desc": "Everything person recently know agent our.",
       "category_img": "http://localhost:3001/uploads/1733197096551-605416548.png",
       "id": "a6be"
+    },
+    {
+      "id": "c74d",
+      "category_id": 11,
+      "category_name": "dsasdad",
+      "category_desc": "asdas",
+      "category_img": "http://localhost:3001/uploads/1733208458564-844594188.png"
     }
   ],
   "products": [
     {
-      "product_id": "1",
+      "product_id": 1,
       "product_name": "subject",
       "product_price": 322.76,
       "product_img": "http://localhost:3001/uploads/1733206514003-201632995.png",
       "product_discount": 1,
       "product_cat": 3,
-      "product_status": "pre_order",
+      "product_status": false,
       "id": "d5cf"
     },
     {
-      "product_id": "2",
+      "product_id": 2,
       "product_name": "pressure",
       "product_price": 553.36,
       "product_img": "https://www.lorempixel.com/720/707",
       "product_discount": 11,
       "product_cat": 2,
-      "product_status": "pre_order",
+      "product_status": true,
       "id": "9712"
     },
     {
-      "product_id": "3",
+      "product_id": 3,
       "product_name": "time",
       "product_price": 232.53,
       "product_img": "https://placekitten.com/987/554",
       "product_discount": 21,
       "product_cat": 6,
-      "product_status": "out_of_stock",
+      "product_status": false,
       "id": "67d0"
     },
     {
-      "product_id": "4",
+      "product_id": 4,
       "product_name": "computer",
       "product_price": 289.88,
       "product_img": "https://placekitten.com/27/964",
       "product_discount": 28,
       "product_cat": 9,
-      "product_status": "out_of_stock",
+      "product_status": true,
       "id": "89d5"
     },
     {
@@ -601,6 +608,111 @@
       "product_discount": 11,
       "product_cat": 7,
       "product_status": "unavailable"
+    },
+    {
+      "id": "9e93",
+      "product_id": 54,
+      "product_img": "http://localhost:3001/uploads/1733884632242-394597968.jpg",
+      "product_name": "KhacDuy",
+      "product_price": 1,
+      "product_discount": 11,
+      "product_cat": 6,
+      "product_status": "available"
+    }
+  ],
+  "roles": [
+    {
+      "name": "Staff",
+      "permissions": [
+        {
+          "id": "dashboard",
+          "access": "view"
+        },
+        {
+          "id": "categories",
+          "access": "curate"
+        },
+        {
+          "id": "products",
+          "access": "curate"
+        },
+        {
+          "id": "customers",
+          "access": "curate"
+        },
+        {
+          "id": "orders",
+          "access": "curate"
+        },
+        {
+          "id": "roles",
+          "access": "none"
+        }
+      ],
+      "created_at": "2024-12-11T08:52:16.772Z",
+      "id": "2"
+    },
+    {
+      "name": "Admin",
+      "permissions": [
+        {
+          "id": "dashboard",
+          "access": "view"
+        },
+        {
+          "id": "categories",
+          "access": "curate"
+        },
+        {
+          "id": "products",
+          "access": "curate"
+        },
+        {
+          "id": "customers",
+          "access": "curate"
+        },
+        {
+          "id": "orders",
+          "access": "curate"
+        },
+        {
+          "id": "roles",
+          "access": "curate"
+        }
+      ],
+      "created_at": "2024-12-11T07:14:41.930Z",
+      "id": "1"
+    },
+    {
+      "name": "Customer",
+      "permissions": [
+        {
+          "id": "dashboard",
+          "access": "none"
+        },
+        {
+          "id": "categories",
+          "access": "none"
+        },
+        {
+          "id": "products",
+          "access": "none"
+        },
+        {
+          "id": "customers",
+          "access": "none"
+        },
+        {
+          "id": "orders",
+          "access": "none"
+        },
+        {
+          "id": "roles",
+          "access": "none"
+        }
+      ],
+      "created_at": "2024-12-11T07:15:33.846Z",
+      "id": "0"
     }
   ],
   "users": [
@@ -609,333 +721,222 @@
       "user_name": "Michael Werner",
       "user_email": "thomas60@swanson-white.com",
       "user_password": "2$Z1Qyth@9",
-      "user_phone": "001-956-337-6566x583",
-      "user_address": "123 Main St, New York, NY 10001",
-      "user_role": "customer",
+      "user_phone": "01234567891",
+      "street": "123 Main St",
+      "city": "Cao Lãnh",
+      "country": "Vietnam",
+      "user_role": "0",
       "id": "4cc4",
       "user_status": true
     },
     {
       "user_id": 2,
-      "user_name": "Ryan Weiss",
-      "user_email": "travis78@gmail.com",
-      "user_password": "y+b5N)nE@$",
-      "user_phone": "8929457029",
-      "user_address": "456 Elm St, Los Angeles, CA 90001",
-      "user_role": "customer",
+      "user_name": "admin",
+      "user_email": "admin@gmail.com",
+      "user_password": "c^4MPuXp*i",
+      "user_phone": "01234567892",
+      "street": "456 Elm St",
+      "city": "Adalar",
+      "country": "Turkey",
+      "user_role": "1",
       "id": "ce5d",
       "user_status": true
     },
     {
       "user_id": 3,
-      "user_name": "Charles Ray",
-      "user_email": "ronaldward@hotmail.com",
-      "user_password": "4O1Q2uLdq(",
-      "user_phone": "6428752100",
-      "user_address": "789 Pine St, Chicago, IL 60601",
-      "user_role": "customer",
-      "id": "86d0",
+      "user_name": "John Smith",
+      "user_email": "john@email.com",
+      "user_password": "pass123",
+      "user_phone": "01234567893",
+      "street": "789 Pine St",
+      "city": "Chicago",
+      "country": "United States",
+      "user_role": "0",
+      "id": "ab12",
       "user_status": true
     },
     {
       "user_id": 4,
-      "user_name": "Angela Jones",
-      "user_email": "robertlewis@yahoo.com",
-      "user_password": "09GWfL3W(N",
-      "user_phone": "4553338402",
-      "user_address": "101 Maple St, Houston, TX 77001",
-      "user_role": "customer",
-      "id": "eac2",
+      "user_name": "Emma Davis",
+      "user_email": "emma@email.com",
+      "user_password": "pass456",
+      "user_phone": "01234567894",
+      "street": "101 Oak St",
+      "city": "Houston",
+      "country": "United States",
+      "user_role": "0",
+      "id": "cd34",
       "user_status": true
     },
     {
       "user_id": 5,
-      "user_name": "Tina Shelton",
-      "user_email": "jeremy56@gmail.com",
-      "user_password": "^2Kg6jW)f7",
-      "user_phone": "+1-978-616-6259x31179",
-      "user_address": "202 Oak St, Phoenix, AZ 85001",
-      "user_role": "customer",
-      "id": "113c",
-      "user_status": true
-    },
-    {
-      "user_id": 6,
-      "user_name": "Dan Rose",
-      "user_email": "wardstacey@morales-franklin.com",
-      "user_password": "c^4MPuXp*i",
-      "user_phone": "393-350-0050x93077",
-      "user_address": "303 Birch St, Philadelphia, PA 19101",
-      "user_role": "admin",
-      "id": "280f",
-      "user_status": true,
-      "permissions": [
-        "Manage Categories",
-        "Manage admin",
-        "Manage Admin",
-        "Manage Orders"
-      ],
-      "user_image": "http://localhost:3001/uploads/1733195592946-432995815.png"
-    },
-    {
-      "user_id": 7,
-      "user_name": "Ruth Wilson",
-      "user_email": "wsanders@hotmail.com",
-      "user_password": "S8%JKH+e(P",
-      "user_phone": "774-632-2689x853",
-      "user_address": "404 Cedar St, San Antonio, TX 78201",
-      "user_role": "admin",
-      "id": "f591",
-      "permissions": [
-        "Manage Admin",
-        "Manage Categories"
-      ]
-    },
-    {
-      "user_id": 8,
-      "user_name": "Jesus Fernandez",
-      "user_email": "kgilbert@wang-harper.com",
-      "user_password": "r4TQ+vhG_*",
-      "user_phone": "001-337-811-3669x2669",
-      "user_address": "505 Willow St, San Diego, CA 92101",
-      "user_role": "admin",
-      "id": "1081",
-      "user_status": true,
-      "permissions": [
-        "Manage Categories",
-        "Manage Admin"
-      ]
+      "user_name": "Sarah Wilson",
+      "user_email": "sarah@email.com",
+      "user_password": "pass789",
+      "user_phone": "01234567895",
+      "street": "202 Maple St",
+      "city": "Phoenix",
+      "country": "United States",
+      "user_role": "0",
+      "id": "ef56",
+      "user_status": false
     },
     {
       "user_id": 9,
-      "user_name": "Oscar Mitchell",
-      "user_email": "cyoung@brock.info",
-      "user_password": "4!W2FowqQl",
-      "user_phone": "755.368.8459x88845",
-      "user_address": "606 Fir St, Dallas, TX 75201",
-      "user_role": "staff",
-      "id": "dd55",
-      "user_status": true,
-      "permissions": [
-        "Manage Products",
-        "Manage Orders"
-      ]
+      "user_name": "Hoang Yen",
+      "user_email": "babyyen@gmail.com",
+      "user_password": "passjkl",
+      "user_phone": "01234567899",
+      "street": "606 Oak St",
+      "city": "Dallas",
+      "country": "United States",
+      "user_role": "2",
+      "id": "mn34",
+      "user_status": true
+      
     },
     {
       "user_id": 10,
-      "user_name": "Peggy Foster",
-      "user_email": "sosathomas@hotmail.com",
-      "user_password": "u@T5LQyCAR",
-      "user_phone": "+1-113-242-0675x3337",
-      "user_address": "707 Redwood St, San Jose, CA 95101",
-      "user_role": "customer",
-      "id": "5dc1",
+      "user_name": "Robert Martin",
+      "user_email": "robert@email.com",
+      "user_password": "passmno",
+      "user_phone": "01234567800",
+      "street": "707 Maple St",
+      "city": "San Jose",
+      "country": "United States",
+      "user_role": "0",
+      "id": "pq56",
       "user_status": true
     },
     {
       "user_id": 11,
-      "user_name": "Manuel Schwartz",
-      "user_email": "dlogan@mason.net",
-      "user_password": "Yj9y#A7q!^",
-      "user_phone": "283.121.9583x9587",
-      "user_address": "808 Ash St, Austin, TX 73301",
-      "user_role": "admin",
-      "id": "f68d",
+      "user_name": "Patricia Thompson",
+      "user_email": "patricia@email.com",
+      "user_password": "passpqr",
+      "user_phone": "01234567801",
+      "street": "808 Cedar St",
+      "city": "Austin",
+      "country": "United States",
+      "user_role": "1",
+      "id": "rs78",
       "user_status": true
     },
     {
       "user_id": 12,
-      "user_name": "Angela Johnson",
-      "user_email": "tammy83@gmail.com",
-      "user_password": "*P&JpIHvV5",
-      "user_phone": "+1-166-592-9340x92624",
-      "user_address": "909 Palm St, Jacksonville, FL 32201",
-      "user_role": "admin",
-      "id": "31f5"
+      "user_name": "Michael Garcia",
+      "user_email": "michael@email.com",
+      "user_password": "passstu",
+      "user_phone": "01234567802",
+      "street": "909 Pine St",
+      "city": "Jacksonville",
+      "country": "United States",
+      "user_role": "2",
+      "id": "tu90",
+      "user_status": true
     },
     {
       "user_id": 13,
-      "user_name": "Omar Ford",
-      "user_email": "justin24@hotmail.com",
-      "user_password": "4P(m85Dt&y",
-      "user_phone": "530-614-2161",
-      "user_address": "1001 Chestnut St, Fort Worth, TX 76101",
-      "user_role": "customer",
-      "id": "0040",
+      "user_name": "Linda Martinez",
+      "user_email": "linda@email.com",
+      "user_password": "passvwx",
+      "user_phone": "01234567803",
+      "street": "1010 Elm St",
+      "city": "Fort Worth",
+      "country": "United States",
+      "user_role": "0",
+      "id": "vw12",
       "user_status": true
     },
     {
       "user_id": 14,
-      "user_name": "Brittany Stanley",
-      "user_email": "rhonda18@yahoo.com",
-      "user_password": "57SMRmqF@9",
-      "user_phone": "636-216-8516x89233",
-      "user_address": "1112 Spruce St, Columbus, OH 43201",
-      "user_role": "admin",
-      "id": "294a"
+      "user_name": "Elizabeth Robinson",
+      "user_email": "elizabeth@email.com",
+      "user_password": "passyz1",
+      "user_phone": "01234567804",
+      "street": "1111 Oak St",
+      "city": "Columbus",
+      "country": "United States",
+      "user_role": "2",
+      "id": "yz34",
+      "user_status": false
     },
     {
       "user_id": 15,
-      "user_name": "Cameron Carter",
-      "user_email": "villanuevakyle@gmail.com",
-      "user_password": "*mw3YB9zrx",
-      "user_phone": "244.057.7144x7023",
-      "user_address": "1213 Poplar St, Charlotte, NC 28201",
-      "user_role": "customer",
-      "id": "dfc3"
-    },
-    {
-      "user_id": 16,
-      "user_name": "Deborah Hubbard",
-      "user_email": "william71@yahoo.com",
-      "user_password": "dK7$SBRsc_",
-      "user_phone": "835-669-5251",
-      "user_address": "1314 Cedar Ave, Indianapolis, IN 46201",
-      "user_role": "customer",
-      "id": "7320"
-    },
-    {
-      "user_id": 17,
-      "user_name": "Michelle Richards",
-      "user_email": "haydenjohnny@gmail.com",
-      "user_password": "j0Mg)^pg+2",
-      "user_phone": "000.364.9421",
-      "user_address": "1415 Birch Ave, Seattle, WA 98101",
-      "user_role": "admin",
-      "id": "1d8c",
+      "user_name": "William Clark",
+      "user_email": "william@email.com",
+      "user_password": "pass234",
+      "user_phone": "01234567805",
+      "street": "1212 Maple St",
+      "city": "Charlotte",
+      "country": "United States",
+      "user_role": "0",
+      "id": "ab56",
       "user_status": true
     },
     {
+      "user_id": 16,
+      "user_name": "Barbara Rodriguez",
+      "user_email": "barbara@email.com",
+      "user_password": "pass567",
+      "user_phone": "01234567806",
+      "street": "1313 Cedar St",
+      "city": "Indianapolis",
+      "country": "United States",
+      "user_role": "0",
+      "id": "cd78",
+      "user_status": true
+    },
+    {
+      "user_id": 17,
+      "user_name": "Richard Lee",
+      "user_email": "richard@email.com",
+      "user_password": "pass890",
+      "user_phone": "01234567807",
+      "street": "1414 Pine St",
+      "city": "Seattle",
+      "country": "United States",
+      "user_role": "2",
+      "id": "ef90",
+      "user_status": false
+    },
+    {
       "user_id": 18,
-      "user_name": "James Morton",
-      "user_email": "kerrsharon@yahoo.com",
-      "user_password": "bC+&2Qb6@I",
-      "user_phone": "(637)483-2038x119",
-      "user_address": "1516 Elm Ave, Denver, CO 80201",
-      "user_role": "admin",
-      "id": "05c6",
+      "user_name": "Susan Walker",
+      "user_email": "susan@email.com",
+      "user_password": "passabc",
+      "user_phone": "01234567808",
+      "street": "1515 Elm St",
+      "city": "Denver",
+      "country": "United States",
+      "user_role": "2",
+      "id": "gh12",
       "user_status": true
     },
     {
       "user_id": 19,
-      "user_name": "Gloria Hughes",
-      "user_email": "mthomas@mullins-johnson.com",
-      "user_password": "W+2V^JDewa",
-      "user_phone": "+1-084-351-8158x718",
-      "user_address": "1617 Maple Ave, Boston, MA 02101",
-      "user_role": "customer",
-      "id": "4414",
+      "user_name": "Joseph Hall",
+      "user_email": "joseph@email.com",
+      "user_password": "passdef",
+      "user_phone": "01234567809",
+      "street": "1616 Oak St",
+      "city": "Boston",
+      "country": "United States",
+      "user_role": "0",
+      "id": "ij34",
       "user_status": true
     },
     {
       "user_id": 20,
-      "user_name": "Lindsey Anthony",
-      "user_email": "thomasmark@hotmail.com",
-      "user_password": "!0Kb_CaKJy",
-      "user_phone": "784.367.3169",
-      "user_address": "1718 Oak Ave, Nashville, TN 37201",
-      "user_role": "admin",
-      "id": "c0d6"
-    },
-    {
-      "id": "c83e",
-      "user_id": 21,
-      "user_name": "đádsđa",
-      "user_email": "sadsa",
-      "user_phone": "dsad",
-      "user_address": "sad",
-      "user_role": "customer",
-      "user_status": true,
-      "user_image": "http://localhost:3001/uploads/1733188039142-979306656.png"
-    },
-    {
-      "id": "44fe",
-      "user_id": 22,
-      "user_name": "đâs",
-      "user_email": "đấ",
-      "user_phone": "đá",
-      "user_address": "dsadsa",
-      "user_role": "customer",
-      "user_status": true,
-      "user_image": "http://localhost:3001/uploads/1733188380506-816868950.png"
-    },
-    {
-      "id": "b67c",
-      "user_id": 23,
-      "user_name": "đâs",
-      "user_email": "dsad",
-      "user_phone": "ádas",
-      "user_address": "đáád",
-      "user_role": "customer",
-      "user_status": false,
-      "user_image": "http://localhost:3001/uploads/1733188529535-12410302.png"
-    },
-    {
-      "id": "18d3",
-      "user_id": 24,
-      "user_name": "Nguyễn Khắc Duy",
-      "user_email": "sadsad@gmail.com",
-      "user_phone": "005156",
-      "user_address": "13",
-      "user_role": "Staff",
-      "user_status": false,
-      "permissions": [
-        "Manage Categories"
-      ],
-      "user_image": "http://localhost:3001/uploads/1733194902153-340596129.png"
-    },
-    {
-      "id": "6284",
-      "user_id": 25,
-      "user_name": "Nguyễn Khắc Duy",
-      "user_email": "g@gmail.com",
-      "user_phone": "0274454",
-      "user_address": "13",
-      "user_role": "Admin",
-      "user_status": true,
-      "permissions": [
-        "Manage Categories",
-        "Manage Products",
-        "Manage Orders"
-      ],
-      "user_image": "http://localhost:3001/uploads/1733195088192-795391427.png"
-    },
-    {
-      "id": "1209",
-      "user_id": 26,
-      "user_name": "sada",
-      "user_email": "adasd",
-      "user_phone": "ádsad",
-      "user_address": "ádsa",
-      "user_role": "admin",
-      "user_status": true,
-      "permissions": [
-        "Manage Categories",
-        "Manage Orders"
-      ],
-      "user_image": "http://localhost:3001/uploads/1733195212771-551707634.png"
-    },
-    {
-      "id": "9c56",
-      "user_id": 27,
-      "user_name": "ewqeqqeq32311",
-      "user_email": "qwe@gmail.com",
-      "user_phone": "01546848",
-      "user_address": "eqweqweqe",
-      "user_role": "customer",
-      "user_status": true,
-      "user_image": "http://localhost:3001/uploads/1733205022465-211194786.png"
-    },
-    {
-      "id": "e831",
-      "user_id": 28,
-      "user_name": "đấ",
-      "user_email": "ádad",
-      "user_phone": "eqwe21",
-      "user_address": "đa",
-      "user_role": "customer",
-      "user_status": false,
-      "user_image": "http://localhost:3001/uploads/1733205101507-589249812.png"
+      "user_name": "Margaret Young",
+      "user_email": "margaret@email.com",
+      "user_password": "passghi",
+      "user_phone": "01234567810",
+      "street": "1717 Maple St",
+      "city": "Nashville",
+      "country": "United States",
+      "user_role": "2",
+      "id": "kl56",
+      "user_status": false
     }
   ],
   "bill_details": [
@@ -1296,6 +1297,7 @@
       "user_id": 19,
       "total_amount": 4684.36,
       "bill_date": "2024-10-12 09:42:25",
+      "bill_status": "Approved",
       "id": "50d5"
     },
     {
@@ -1303,6 +1305,7 @@
       "user_id": 10,
       "total_amount": 1236.07,
       "bill_date": "2024-10-23 11:51:10",
+      "bill_status": "Shipping sent",
       "id": "9532"
     },
     {
@@ -1310,6 +1313,7 @@
       "user_id": 6,
       "total_amount": 1344.5,
       "bill_date": "2024-09-04 00:29:12",
+      "bill_status": "Shipping",
       "id": "d9a8"
     },
     {
@@ -1317,6 +1321,7 @@
       "user_id": 7,
       "total_amount": 3485.14,
       "bill_date": "2024-05-26 08:26:43",
+      "bill_status": "Approved",
       "id": "0010"
     },
     {
@@ -1324,6 +1329,7 @@
       "user_id": 18,
       "total_amount": 1471.29,
       "bill_date": "2024-05-22 16:28:08",
+      "bill_status": "Archived",
       "id": "2894"
     },
     {
@@ -1331,6 +1337,7 @@
       "user_id": 1,
       "total_amount": 316.27,
       "bill_date": "2024-05-13 11:48:32",
+      "bill_status": "Approved",
       "id": "c368"
     },
     {
@@ -1338,6 +1345,7 @@
       "user_id": 11,
       "total_amount": 4062.08,
       "bill_date": "2024-08-10 04:52:12",
+      "bill_status": "Pending",
       "id": "9708"
     },
     {
@@ -1345,6 +1353,7 @@
       "user_id": 17,
       "total_amount": 3322.73,
       "bill_date": "2024-02-28 16:42:19",
+      "bill_status": "Shipping",
       "id": "83b3"
     },
     {
@@ -1352,6 +1361,7 @@
       "user_id": 13,
       "total_amount": 666.24,
       "bill_date": "2024-10-30 08:38:45",
+      "bill_status": "Delivered",
       "id": "f869"
     },
     {
@@ -1359,6 +1369,7 @@
       "user_id": 15,
       "total_amount": 468.62,
       "bill_date": "2024-07-20 16:16:42",
+      "bill_status": "Archived",
       "id": "29e7"
     },
     {
@@ -1366,6 +1377,7 @@
       "user_id": 7,
       "total_amount": 4533.66,
       "bill_date": "2024-09-17 17:05:44",
+      "bill_status": "Approved",
       "id": "7b59"
     },
     {
@@ -1373,6 +1385,7 @@
       "user_id": 6,
       "total_amount": 1779.19,
       "bill_date": "2024-07-08 18:19:44",
+      "bill_status": "Shipping sent",
       "id": "af3f"
     },
     {
@@ -1380,6 +1393,7 @@
       "user_id": 7,
       "total_amount": 4259.2,
       "bill_date": "2024-07-20 15:22:56",
+      "bill_status": "Shipping",
       "id": "c4c9"
     },
     {
@@ -1387,6 +1401,7 @@
       "user_id": 4,
       "total_amount": 4431.54,
       "bill_date": "2024-03-13 04:28:23",
+      "bill_status": "Delivered",
       "id": "d339"
     },
     {
@@ -1394,6 +1409,7 @@
       "user_id": 16,
       "total_amount": 3094.44,
       "bill_date": "2024-11-17 06:53:30",
+      "bill_status": "Archived",
       "id": "c52c"
     },
     {
@@ -1401,6 +1417,7 @@
       "user_id": 8,
       "total_amount": 4018.32,
       "bill_date": "2024-07-18 23:31:33",
+      "bill_status": "Approved",
       "id": "80e2"
     },
     {
@@ -1408,6 +1425,7 @@
       "user_id": 20,
       "total_amount": 687.62,
       "bill_date": "2024-02-22 18:27:55",
+      "bill_status": "Shipping sent",
       "id": "28b6"
     },
     {
@@ -1415,6 +1433,7 @@
       "user_id": 2,
       "total_amount": 3612.33,
       "bill_date": "2024-04-08 00:59:43",
+      "bill_status": "Shipping",
       "id": "ccdb"
     },
     {
@@ -1422,6 +1441,7 @@
       "user_id": 10,
       "total_amount": 3864.59,
       "bill_date": "2024-03-26 20:02:48",
+      "bill_status": "Delivered",
       "id": "5ba1"
     },
     {
@@ -1429,6 +1449,7 @@
       "user_id": 7,
       "total_amount": 2147.67,
       "bill_date": "2024-04-28 01:35:27",
+      "bill_status": "Archived",
       "id": "77a9"
     },
     {
@@ -1436,6 +1457,7 @@
       "user_id": 3,
       "total_amount": 4192.56,
       "bill_date": "2024-08-27 13:17:43",
+      "bill_status": "Approved",
       "id": "a11f"
     },
     {
@@ -1443,6 +1465,7 @@
       "user_id": 14,
       "total_amount": 4005.49,
       "bill_date": "2024-10-26 21:31:03",
+      "bill_status": "Shipping sent",
       "id": "a5ba"
     },
     {
@@ -1450,6 +1473,7 @@
       "user_id": 18,
       "total_amount": 2555.48,
       "bill_date": "2024-09-03 22:40:36",
+      "bill_status": "Shipping",
       "id": "50e9"
     },
     {
@@ -1457,6 +1481,7 @@
       "user_id": 18,
       "total_amount": 1056.58,
       "bill_date": "2024-05-17 14:23:31",
+      "bill_status": "Delivered",
       "id": "1f69"
     },
     {
@@ -1464,6 +1489,7 @@
       "user_id": 9,
       "total_amount": 4464.52,
       "bill_date": "2024-10-20 20:11:44",
+      "bill_status": "Archived",
       "id": "6899"
     },
     {
@@ -1471,6 +1497,7 @@
       "user_id": 16,
       "total_amount": 2457.9,
       "bill_date": "2024-08-24 04:06:56",
+      "bill_status": "Approved",
       "id": "8ed7"
     },
     {
@@ -1478,6 +1505,7 @@
       "user_id": 16,
       "total_amount": 4696.1,
       "bill_date": "2024-09-01 06:24:45",
+      "bill_status": "Shipping sent",
       "id": "43c5"
     },
     {
@@ -1485,6 +1513,7 @@
       "user_id": 13,
       "total_amount": 4292.32,
       "bill_date": "2024-01-14 22:19:40",
+      "bill_status": "Shipping",
       "id": "efe6"
     },
     {
@@ -1492,6 +1521,7 @@
       "user_id": 13,
       "total_amount": 4604.51,
       "bill_date": "2024-07-02 12:47:12",
+      "bill_status": "Delivered",
       "id": "09a8"
     },
     {
@@ -1499,6 +1529,7 @@
       "user_id": 14,
       "total_amount": 483.86,
       "bill_date": "2024-07-03 19:15:19",
+      "bill_status": "Archived",
       "id": "117a"
     }
   ],
