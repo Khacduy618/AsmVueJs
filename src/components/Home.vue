@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid py-4">
+  <div class="container-fluid">
     <h1 class="heading">Admin Dashboard</h1>
     <div class="cardBox">
       <div class="card" v-for="(item, index) in stats" :key="index">
@@ -25,6 +25,7 @@
                 <thead>
                   <tr>
                     <th class="text-center">Order ID</th>
+                    <th class="text-center">Customer</th>
                     <th class="text-center">Amount</th>
                     <th class="text-center">Status</th>
                     <th class="text-center">Date</th>
@@ -36,10 +37,14 @@
                       <span class="order-id">#{{ order.bill_id }}</span>
                     </td>
                     <td class="text-center">
+                      <span class="customer">{{ order.customerName }}</span>
+                    </td>
+                    <td class="text-center">
                       <span class="amount">${{ order.total_amount.toFixed(2) }}</span>
                     </td>
                     <td>
-                      <span class="status">{{ order.bill_status }}</span></td>
+                      <span class="status">{{ order.bill_status }}</span>
+                    </td>
                     <td>
                       <span class="date">{{ formatDate(order.bill_date) }}</span>
                     </td>
@@ -67,8 +72,9 @@
                     <div class="d-flex align-items-center">
                       <img
                         :src="product.product_img"
-                        class="rounded-circle product-img me-3"
+                        class=" product-img me-3"
                         :alt="product.product_name"
+                        @error="handleImageError"
                       />
                       <div>
                         <p class="fw-bold mb-1">{{ product.product_name }}</p>
@@ -92,8 +98,6 @@
 
     <div class="row mt-4">
 
-      <!-- Out of Stock Products -->
-      <div class="col-md-6">
         <div class="details">
           <div class="recentOrders">
                       <div class="cardHeader">
@@ -114,8 +118,9 @@
                     <div class="d-flex align-items-center">
                       <img
                         :src="product.product_img"
-                        class="rounded-circle product-img me-3"
+                        class=" product-img me-3"
                         :alt="product.product_name"
+                        @error="handleImageError"
                       />
                       <div>
                         <p class="fw-bold mb-1">{{ product.product_name }}</p>
@@ -134,7 +139,7 @@
             </table>
           </div>
         </div>
-      </div>
+      
     </div>
 
     </div>
@@ -170,11 +175,12 @@ const categories = ref([]);
 
 const fetchStats = async () => {
   try {
-    const [categoriesRes, productsRes, ordersRes, billDetailsRes] = await Promise.all([
+    const [categoriesRes, productsRes, ordersRes, billDetailsRes, usersRes] = await Promise.all([
       axios.get('http://localhost:3000/categories'),
       axios.get('http://localhost:3000/products'),
       axios.get('http://localhost:3000/bills'),
-      axios.get('http://localhost:3000/bill_details')
+      axios.get('http://localhost:3000/bill_details'),
+      axios.get('http://localhost:3000/users'),
     ]);
 
     categories.value = categoriesRes.data;
@@ -192,6 +198,11 @@ const fetchStats = async () => {
         icon: "cube-outline" 
       },
       { 
+        name: "Users", 
+        number: usersRes.data.length, 
+        icon: "people-outline" 
+      },
+      { 
         name: "Orders", 
         number: ordersRes.data.length, 
         icon: "cart-outline" 
@@ -204,18 +215,25 @@ const fetchStats = async () => {
     ];
 
     // Update chart data - Product Status Distribution
-    const statusStats = calculateStatusStats(productsRes.data);
-    chartData.value.labels = ['Available', 'Out of Stock', 'Pre Order'];
-    chartData.value.datasets[0].data = [
-      statusStats.available || 0,
-      statusStats.out_of_stock || 0,
-      statusStats.pre_order || 0
-    ];
+    // const statusStats = calculateStatusStats(productsRes.data);
+    // chartData.value.labels = ['Available', 'Out of Stock', 'Pre Order'];
+    // chartData.value.datasets[0].data = [
+    //   statusStats.available || 0,
+    //   statusStats.out_of_stock || 0,
+    //   statusStats.pre_order || 0
+    // ];
 
     // Get recent orders
     recentOrders.value = ordersRes.data
       .sort((a, b) => new Date(b.bill_date) - new Date(a.bill_date))
-      .slice(0, 5);
+      .slice(0, 5)
+      .map(order => {
+        const user = usersRes.data.find(u => u.user_id === order.user_id);
+        return {
+          ...order,
+          customerName: user ? `${user.user_name}` : 'Unknown'
+        };
+      });
 
     // Calculate best selling products
     bestSellingProducts.value = calculateBestSelling(
@@ -225,7 +243,7 @@ const fetchStats = async () => {
 
     // Get out of stock products
     outOfStockProducts.value = productsRes.data
-      .filter(product => product.product_status === 'out_of_stock')
+      .filter(product => product.product_count === 0)
       .slice(0, 5);
 
   } catch (error) {
@@ -238,12 +256,12 @@ const calculateTotalRevenue = (orders) => {
   return total.toFixed(2);
 };
 
-const calculateStatusStats = (products) => {
-  return products.reduce((acc, product) => {
-    acc[product.product_status] = (acc[product.product_status] || 0) + 1;
-    return acc;
-  }, {});
-};
+// const calculateStatusStats = (products) => {
+//   return products.reduce((acc, product) => {
+//     acc[product.product_status] = (acc[product.product_status] || 0) + 1;
+//     return acc;
+//   }, {});
+// };
 
 const calculateBestSelling = (products, billDetails) => {
   // Calculate total quantity sold for each product
@@ -273,7 +291,9 @@ const formatDate = (dateString) => {
     day: 'numeric'
   });
 };
-
+const handleImageError = (event) => {
+  event.target.src = 'https://via.placeholder.com/150'
+}
 onMounted(() => {
   fetchStats();
 });
@@ -304,31 +324,40 @@ onMounted(() => {
 
 .table {
   margin-bottom: 0;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
 }
 
 .table thead th {
   font-weight: 600;
-  font-size: 0.875rem;
-  padding: 0.75rem;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
-  color: #666;
+  font-size: 0.9rem;
+  padding: 1rem;
+  background: linear-gradient(to right, #f8f9fa, #ffffff);
+  color: #444;
+  border-bottom: 2px solid #eef2f7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .table tbody td {
-  padding: 0.75rem;
+  padding: 1rem;
   vertical-align: middle;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease;
 }
 
-.table tbody tr:last-child td {
-  border-bottom: none;
+.table tbody tr:hover {
+  background-color: rgba(33, 150, 243, 0.02);
 }
 
 .product-img {
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
+  border: 1px solid #eee;
+  background-color: #f8f9fa;
 }
 
 .badge {
@@ -339,7 +368,7 @@ onMounted(() => {
 
 .cardBox {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -379,12 +408,7 @@ onMounted(() => {
   opacity: 0.9;
 }
 
-.heading {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 1.5rem;
-}
+
 
 /* Table cell specific styles */
 .table td p {

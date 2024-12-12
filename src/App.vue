@@ -46,7 +46,7 @@
     <li v-if="hasAccess('orders')" class="nav-item">
       <router-link class="nav-link" to="/order">
         <span class="icon">
-          <ion-icon name="pricetags-outline"></ion-icon>
+          <ion-icon name="cart-outline"></ion-icon>
         </span>
         <span class="title">Order Management</span>
       </router-link>
@@ -122,7 +122,7 @@ const fetchRolesAndPermissions = async () => {
 // Kiểm tra quyền truy cập
 const hasAccess = (menuId) => {
   const permission = userPermissions.value.find(p => p.id === menuId)
-  return permission && ['curate'].includes(permission.access)
+  return permission && ['view', 'curate'].includes(permission.access)
 }
 
 // Tạo hàm để cập nhật trạng thái xác thực
@@ -275,7 +275,7 @@ onMounted(() => {
 }
 
 .navbar ul li:nth-child(1) {
-  margin-top: 10px;
+  margin-top: 30px;
   margin-bottom: 30px;
   pointer-events: none;
 }

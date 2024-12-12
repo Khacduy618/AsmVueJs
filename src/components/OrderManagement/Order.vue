@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <!-- Header Section -->
     <div class="d-flex flex-column">
-    <h2 class="mb-4 fw-bold">Orders</h2>
+    <h1 class="heading">Orders</h1>
     <div class="row g-3 align-items-center mb-4">
       <div class="col-12 col-sm-6 col-md-2 me-md-2">
         <select class="form-select shadow-sm" v-model="selectedPeriod"  @change="selectDatePeriod(selectedPeriod)">
@@ -336,9 +336,8 @@ const fetchOrders = async () => {
         billid: bill.bill_id,
         date: new Date(bill.bill_date).toLocaleDateString(),
         customer: user?.user_name || 'Unknown',
-        payment: 'Success', // Assuming all payments are successful since no payment status in db
+        payment:  bill.payment_method === 'Cash on delivery' ? 'Pay not yet' : 'Paid',
         total: bill.total_amount,
-        delivery: 'Processing', // You might want to derive this from bill_status
         items: totalItems,
         status: bill.bill_status,
         products: details.map(detail => {
@@ -379,6 +378,7 @@ const getStatusIcon = (status) => {
     'Shipping sent': 'bi bi-box-seam',
     'Shipping': 'bi bi-truck',
     'Delivered': 'bi bi-check2-circle',
+    'Completed': 'bi bi-check2-circle',
     'Archived': 'bi bi-archive'
   }
   return icons[status] || 'bi bi-tag'

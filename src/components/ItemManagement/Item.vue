@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <!-- Header Section -->
     <div class="align-items-center mb-3">
-        <h2>Items Management</h2>
+        <h1 class="heading">Items Management</h1>
     </div>
     <!-- Search and Filter Section -->
     <div class="row mb-3 gap-1">
@@ -282,7 +282,7 @@
                 </div>
                 <div v-if="formErrors.product_img" class="invalid-feedback d-block">{{ formErrors.product_img }}</div>
                 <small v-else-if="imageFile == '' || imageFile == null" class="text-muted">
-                  Suggested image size is around 2mb and less than 150px x 150px
+                  Suggested image size is around 2mb and less than 2000px x 2000px
                 </small>
                 <small v-else class="text-success">
                   <i class="bi bi-check-circle-fill"></i> Image selected successfully
@@ -824,8 +824,8 @@ const validateImage = (file) => {
 
     img.onload = () => {
       URL.revokeObjectURL(img.src)
-      if (img.width > 150 || img.height > 150) {
-        reject(new Error('Image dimensions should not exceed 150x150 pixels'))
+      if (img.width > 2000 || img.height > 2000) {
+        reject(new Error('Photo size not more than 2000px x 2000px'))
       } else {
         resolve(true)
       }

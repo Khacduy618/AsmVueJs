@@ -2,6 +2,7 @@
 import { ref, inject } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import axios from 'axios'
+import { flip } from '@popperjs/core';
 
 const router = useRouter()
 const route = useRoute()
@@ -22,7 +23,8 @@ const login = async () => {
     const response = await axios.get(`/users?user_email=${email.value}`)
     const user = response.data[0]
     
-    if (user && user.user_password === password.value) {
+    if (user && user.user_password === password.value && user.user_status != false) {
+      
       const token = btoa(JSON.stringify({
         id: user.user_id,
         email: user.user_email,
@@ -44,7 +46,7 @@ const login = async () => {
       if (user.user_role !== '0') {
 
         router.push('/home')
-      } else {
+      }else {
         localStorage.removeItem('token')
         localStorage.removeItem('user')
         updateAuthStatus(false)

@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <!-- Header Section -->
       <div class="align-items-center mb-3">
-          <h2>Category Management</h2>
+          <h1 class="heading">Category Management</h1>
       </div>
       <!-- Search and Filter Section -->
       <div class="row mb-3 gap-1">
